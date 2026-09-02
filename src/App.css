@@ -42,8 +42,8 @@ html { scroll-behavior: smooth; }
 .envelope-letter button:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(180, 138, 82, .4); }
 .envelope-intro.is-open .envelope-flap { transform: rotateX(180deg); }
 .envelope-intro.is-open .envelope { transform: translateY(10px) scale(1.02); }
-.page-open .hero, .page-open .intro, .page-open .date-card, .page-open .countdown, .page-open .day-plan, .page-open .details-band, .page-open .gifts, .page-open .rsvp, .page-open footer, .page-open .admin-panel { opacity: 1; }
-.page-closed .hero, .page-closed .intro, .page-closed .date-card, .page-closed .countdown, .page-closed .day-plan, .page-closed .details-band, .page-closed .gifts, .page-closed .rsvp, .page-closed footer, .page-closed .admin-panel { opacity: 0; pointer-events: none; max-height: 0; overflow: hidden; margin: 0; padding: 0; }
+.page-open .hero, .page-open .intro, .page-open .story-gallery, .page-open .date-card, .page-open .countdown, .page-open .day-plan, .page-open .event-route, .page-open .map-teaser, .page-open .details-band, .page-open .gifts, .page-open .rsvp, .page-open footer, .page-open .admin-panel { opacity: 1; }
+.page-closed .hero, .page-closed .intro, .page-closed .story-gallery, .page-closed .date-card, .page-closed .countdown, .page-closed .day-plan, .page-closed .event-route, .page-closed .map-teaser, .page-closed .details-band, .page-closed .gifts, .page-closed .rsvp, .page-closed footer, .page-closed .admin-panel { opacity: 0; pointer-events: none; max-height: 0; overflow: hidden; margin: 0; padding: 0; }
 .page-closed { background: #f7efe9; }
 .page-closed .nav-shell { position: static; background: rgba(85, 75, 71, .92); }
 .search-row { margin-top: -8px; }
