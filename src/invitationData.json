@@ -1,0 +1,84 @@
+{
+  "couple": {
+    "bride": "Dayana",
+    "groom": "Nicolás",
+    "shortMark": "D&N"
+  },
+  "date": {
+    "day": "20",
+    "month": "02",
+    "year": "2027",
+    "display": "20 · 02 · 2027",
+    "iso": "2027-02-20T17:30:00-03:00"
+  },
+  "hero": {
+    "overline": "Una noche para celebrar el amor",
+    "location": "Chapanay · Concón / Quintero",
+    "note": "Nos casamos"
+  },
+  "intro": {
+    "overline": "Querida familia, queridos amigos",
+    "headline": "Hay noches que se esperan.",
+    "headlineEmphasis": "Esta es una que queremos vivir contigo.",
+    "text": "Después de decir que sí, queremos reunirnos bajo las luces, las flores y el cielo de Chapanay para celebrar el comienzo de nuestra vida juntos."
+  },
+  "calendar": {
+    "title": "Matrimonio Dayana y Nicolás",
+    "time": "17:30 hrs",
+    "place": "Parroquia Nuestra Señora de las Mercedes",
+    "address": "Maroto 950, Concón, Región de Valparaíso",
+    "maps": "https://maps.app.goo.gl/JyE2mYV2eyToXfx5A?g_st=iw",
+    "reminderDaysBefore": 7,
+    "durationHours": 10,
+    "description": "Ceremonia de Dayana y Nicolás. La celebración continúa en Centro de Eventos Chapanay."
+  },
+  "program": [
+    { "time": "17:30 hrs", "title": "Ceremonia", "description": "Nos encontramos en la Parroquia Nuestra Señora de las Mercedes." },
+    { "time": "19:30 hrs", "title": "La celebración", "description": "Nos trasladamos a Centro de Eventos Chapanay para brindar y compartir." },
+    { "time": "Después", "title": "La fiesta", "description": "Una noche para celebrar juntos hasta que el cuerpo aguante." }
+  ],
+  "locations": {
+    "church": {
+      "number": "01",
+      "label": "La ceremonia",
+      "name": "Parroquia Nuestra Señora de las Mercedes",
+      "time": "17:30 hrs",
+      "description": "Los esperamos para compartir el momento en que nuestras historias se vuelven una.",
+      "address": "Maroto 950\nConcón, Valparaíso",
+      "maps": "https://maps.app.goo.gl/JyE2mYV2eyToXfx5A?g_st=iw",
+      "waze": "https://waze.com/ul/h66jhswspu"
+    },
+    "venue": {
+      "number": "02",
+      "label": "La celebración",
+      "name": "Centro de Eventos Chapanay",
+      "time": "19:30 — 20:00 hrs",
+      "description": "La fiesta comienza al caer la noche. Flores, copas y una pista esperando por nosotros.",
+      "address": "Las Palmeras s/n\nMantagua, Quintero",
+      "maps": "https://maps.app.goo.gl/vaXpbVKgHn9XB4x99?g_st=iw",
+      "waze": "https://waze.com/ul/h66jjj90kg"
+    }
+  },
+  "details": [
+    { "icon": "dress", "title": "Dress code", "text": "Elegante" },
+    { "icon": "moon", "title": "La noche", "text": "Hasta que el cuerpo aguante" },
+    { "icon": "heart", "title": "Con cariño", "text": "Tu presencia es el regalo" }
+  ],
+  "gifts": {
+    "title": "Ayúdanos a llegar más lejos",
+    "store": "Paris · Lista de novios",
+    "mark": "D&N",
+    "code": "21046698",
+    "url": "https://club.noviosparis.cl/search-couple",
+    "description": "Si desean hacernos un regalo, hemos elegido la lista de novios Paris para reunir lo necesario para nuestra nueva vida.",
+    "note": "Cada regalo será simbólico y estará destinado a hacer realidad nuestra luna de miel. Gracias por acompañarnos también en este sueño."
+  },
+  "rsvp": {
+    "overline": "Tu lugar en esta noche",
+    "title": "¿Nos acompañas?",
+    "description": "Queremos preparar cada detalle sabiendo que vas a estar. Confírmanos tu asistencia y la de quienes te acompañan.",
+    "attendanceOptions": ["¡Sí, ahí estaremos!", "No podremos acompañarlos"],
+    "successText": "Recibimos tu confirmación. Nos vemos en Chapanay."
+  },
+  "footer": "Con amor, Dayana y Nicolás"
+}
