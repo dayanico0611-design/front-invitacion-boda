@@ -38,7 +38,8 @@ html { scroll-behavior: smooth; }
 .envelope-letter h2 { color: var(--ink); font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4rem); margin: 10px 0; position: relative; z-index: 1; }
 .envelope-letter h2 i { color: var(--gold); }
 .envelope-date { color: var(--muted); font-family: 'DM Mono', monospace; font-size: .75rem; letter-spacing: .12em; position: relative; text-transform: uppercase; z-index: 1; }
-.envelope-letter button { background: linear-gradient(135deg, #b48a52, #d1a466); border: 0; border-radius: 999px; color: var(--cream); cursor: pointer; font-family: 'DM Mono', monospace; font-size: .66rem; letter-spacing: .08em; margin-top: 18px; padding: 12px 18px; position: relative; text-transform: uppercase; z-index: 1; }
+.envelope-letter button { background: linear-gradient(135deg, #b48a52, #d1a466); border: 0; border-radius: 999px; color: var(--cream); cursor: pointer; font-family: 'DM Mono', monospace; font-size: .85rem; letter-spacing: .08em; margin-top: 28px; padding: 16px 28px; position: relative; text-transform: uppercase; z-index: 1; font-weight: 600; box-shadow: 0 12px 24px rgba(180, 138, 82, .3); transition: all .3s ease; }
+.envelope-letter button:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(180, 138, 82, .4); }
 .envelope-intro.is-open .envelope-flap { transform: rotateX(180deg); }
 .envelope-intro.is-open .envelope { transform: translateY(10px) scale(1.02); }
 .page-open .hero, .page-open .intro, .page-open .date-card, .page-open .countdown, .page-open .day-plan, .page-open .details-band, .page-open .gifts, .page-open .rsvp, .page-open footer, .page-open .admin-panel { opacity: 1; }
