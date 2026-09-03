@@ -114,6 +114,9 @@ function App() {
   const handleOpenEnvelope = async () => {
     setIsEnvelopeOpen(true)
     await handleToggleMusic()
+    window.setTimeout(() => {
+      document.getElementById('inicio')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 850)
   }
 
   const handleChange = (event) => {
