@@ -294,10 +294,10 @@ function App() {
 
       <nav className="nav-shell"><a className="monogram" href="#inicio">{couple.shortMark}</a><div className="nav-links"><a href="#historia">La celebración</a><a href="#programa">El día</a><a href="#regalos">Regalos</a><a href="#rsvp">Confirmar</a><button type="button" className="nav-admin" onClick={() => setShowGuestList((current) => !current)}>{showGuestList ? 'Ocultar datos' : 'Ver registrados'}</button><button type="button" className="music-toggle" onClick={handleToggleMusic}>{isMusicPlaying ? 'Pausar música' : 'Reproducir música'}</button></div></nav>
       <nav className="bottom-nav" aria-label="Navegación por la invitación">
-        <a href="#historia">Historia</a>
-        <a href="#programa">Programa</a>
-        <a href="#regalos">Regalos</a>
-        <a href="#rsvp">Confirmar</a>
+        <a href="#historia"><NavIcon type="story" />Historia</a>
+        <a href="#programa"><NavIcon type="program" />Programa</a>
+        <a href="#regalos"><NavIcon type="gift" />Regalos</a>
+        <a href="#rsvp"><NavIcon type="rsvp" />Confirmar</a>
       </nav>
       <section className="hero" id="inicio"><div className="hero-wash" /><div className="hero-copy"><p className="overline">{hero.overline}</p><h1>{couple.bride} <i>&</i> {couple.groom}</h1><p className="hero-date">{date.day} <span>·</span> {date.month} <span>·</span> {date.year}</p><p className="hero-location">{hero.location}</p><a className="scroll-cue" href="#historia">Descubrir la invitación <span>↓</span></a></div><p className="hero-note">{hero.note}</p></section>
       <section className="intro section-narrow" id="historia"><p className="overline">{intro.overline}</p><h2>{intro.headline}<br /><em>{intro.headlineEmphasis}</em></h2><p className="intro-text">{intro.text}</p><div className="ornament" aria-hidden="true">✳</div></section>
@@ -362,6 +362,24 @@ function App() {
 }
 
 export default App
+
+function NavIcon({ type }) {
+  const commonProps = { viewBox: '0 0 24 24', 'aria-hidden': 'true' }
+
+  if (type === 'program') {
+    return <svg {...commonProps}><rect x="4" y="5" width="16" height="15" rx="2" /><path d="M8 3v4M16 3v4M4 10h16M8 14h3M8 17h5" /></svg>
+  }
+
+  if (type === 'gift') {
+    return <svg {...commonProps}><path d="M4 10h16v10H4zM3 7h18v3H3zM12 7v13M12 7H8.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7ZM12 7h3.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7Z" /></svg>
+  }
+
+  if (type === 'rsvp') {
+    return <svg {...commonProps}><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 3v-3h0A2.5 2.5 0 0 1 4 14.5z" /><path d="m8 10 3 2.2 5-4" /></svg>
+  }
+
+  return <svg {...commonProps}><path d="M12 20.5 4.8 13.6a4.2 4.2 0 0 1 6-5.9L12 8l1.2-1.3a4.2 4.2 0 1 1 6 5.9L12 20.5Z" /></svg>
+}
 
 function DetailIcon({ type }) {
   const commonProps = { viewBox: '0 0 24 24', 'aria-hidden': 'true' }
