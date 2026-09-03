@@ -280,7 +280,7 @@ function App() {
     <main className={isEnvelopeOpen ? 'page-open' : 'page-closed'}>
       <section className={`envelope-intro ${isEnvelopeOpen ? 'is-open' : ''}`}>
         <div className="envelope-stage">
-          <div className="envelope">
+          <button className="envelope" type="button" onClick={handleOpenEnvelope} aria-label={envelope.button}>
             <div className="envelope-flap" />
             <div className="envelope-body">
               <div className="envelope-letter">
@@ -288,10 +288,10 @@ function App() {
                 <h2>{couple.bride} <i>&</i> {couple.groom}</h2>
                 <p className="envelope-date">{date.display}</p>
                 <p className="envelope-message">{envelope.message}</p>
-                <button type="button" onClick={handleOpenEnvelope}>{envelope.button}</button>
+                <span className="envelope-prompt">{envelope.button}</span>
               </div>
             </div>
-          </div>
+          </button>
         </div>
       </section>
 

@@ -30,7 +30,9 @@ html { scroll-behavior: smooth; }
 .access-state p { color: var(--muted); font-size: .95rem; line-height: 1.7; margin-top: 16px; }
 .envelope-intro { background: radial-gradient(circle at top, rgba(255,255,255,.6), rgba(255,255,255,0) 30%), linear-gradient(180deg, #f2e6dd 0%, #f8f2ed 46%, #fffaf5 100%); display: grid; place-items: center; min-height: 100vh; padding: 50px 20px; }
 .envelope-stage { display: grid; place-items: center; perspective: 1200px; }
-.envelope { position: relative; width: min(92vw, 760px); height: min(62vw, 480px); transform-style: preserve-3d; transition: transform .9s ease; }
+.envelope { appearance: none; background: transparent; border: 0; color: inherit; cursor: pointer; display: block; padding: 0; position: relative; width: min(92vw, 760px); height: min(62vw, 480px); transform-style: preserve-3d; transition: transform .9s ease, filter .3s ease; }
+.envelope:hover, .envelope:focus-visible { filter: brightness(1.04); outline: none; }
+.envelope:focus-visible .envelope-body { box-shadow: 0 28px 60px rgba(100, 76, 57, .2), 0 0 0 4px rgba(180, 138, 82, .35); }
 .envelope-body { position: absolute; inset: 0; background: linear-gradient(135deg, #f0dfcf, #dcb38e 52%, #c69e74); border: 1px solid rgba(85, 75, 71, .12); border-radius: 18px; box-shadow: 0 28px 60px rgba(100, 76, 57, .2); overflow: hidden; }
 .envelope-body::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,.28), rgba(255,255,255,0) 35%, rgba(85, 75, 71, .06)); }
 .envelope-flap { position: absolute; inset: 0; background: linear-gradient(135deg, #e8c9a5 0%, #d5a97d 100%); clip-path: polygon(0 0, 100% 0, 50% 64%); border-top-left-radius: 18px; border-top-right-radius: 18px; transform-origin: top center; transition: transform .9s ease; z-index: 2; box-shadow: inset 0 -10px 20px rgba(128, 86, 53, .08); }
@@ -40,8 +42,8 @@ html { scroll-behavior: smooth; }
 .envelope-letter h2 i { color: var(--gold); }
 .envelope-date { color: var(--muted); font-family: 'DM Mono', monospace; font-size: .75rem; letter-spacing: .12em; position: relative; text-transform: uppercase; z-index: 1; }
 .envelope-message { color: var(--muted); font-size: .95rem; line-height: 1.5; margin: 18px auto 0; max-width: 410px; position: relative; z-index: 1; }
-.envelope-letter button { background: linear-gradient(135deg, #b48a52, #d1a466); border: 0; border-radius: 999px; color: var(--cream); cursor: pointer; font-family: 'DM Mono', monospace; font-size: .85rem; letter-spacing: .08em; margin-top: 28px; padding: 16px 28px; position: relative; text-transform: uppercase; z-index: 1; font-weight: 600; box-shadow: 0 12px 24px rgba(180, 138, 82, .3); transition: all .3s ease; }
-.envelope-letter button:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(180, 138, 82, .4); }
+.envelope-prompt { background: linear-gradient(135deg, #b48a52, #d1a466); border-radius: 999px; box-shadow: 0 12px 24px rgba(180, 138, 82, .3); color: var(--cream); display: inline-block; font-family: 'DM Mono', monospace; font-size: .85rem; font-weight: 600; letter-spacing: .08em; margin-top: 28px; padding: 16px 28px; position: relative; text-transform: uppercase; z-index: 1; transition: all .3s ease; }
+.envelope:hover .envelope-prompt { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(180, 138, 82, .4); }
 .envelope-intro.is-open .envelope-flap { transform: rotateX(180deg); }
 .envelope-intro.is-open .envelope { transform: translateY(10px) scale(1.02); }
 .page-open .hero, .page-open .intro, .page-open .story-gallery, .page-open .date-card, .page-open .countdown, .page-open .day-plan, .page-open .event-route, .page-open .map-teaser, .page-open .details-band, .page-open .gifts, .page-open .rsvp, .page-open footer, .page-open .admin-panel { opacity: 1; }
@@ -56,7 +58,7 @@ html { scroll-behavior: smooth; }
   .envelope-letter { padding: 18px; }
   .envelope-letter h2 { font-size: clamp(2rem, 10vw, 3.5rem); }
   .envelope-message { font-size: .82rem; margin-top: 12px; }
-  .envelope-letter button { font-size: .76rem; margin-top: 18px; padding: 14px 22px; }
+  .envelope-prompt { font-size: .76rem; margin-top: 18px; padding: 14px 22px; }
 }
 .admin-panel { background: #fffdfb; border-top: 1px solid var(--line); padding: 40px 24px 80px; }
 .admin-header { align-items: center; display: flex; justify-content: space-between; gap: 24px; margin: 0 auto 24px; max-width: 980px; }
