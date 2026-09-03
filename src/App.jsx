@@ -21,7 +21,7 @@ function App() {
     note: ''
   })
   const [remaining, setRemaining] = useState(getRemainingTime(data.date.iso))
-  const { couple, date, hero, intro, program, locations, details, gifts, rsvp, footer } = data
+  const { couple, date, hero, envelope, intro, program, locations, details, gifts, rsvp, footer } = data
   const splitAddress = (address) => address.split('\n').map((line, index) => <span key={`${line}-${index}`}>{line}<br /></span>)
   const calendarEvent = createCalendarEvent(data.calendar, date.iso)
   const sheetEndpoint = import.meta.env.VITE_RSVP_ENDPOINT
@@ -281,10 +281,11 @@ function App() {
             <div className="envelope-flap" />
             <div className="envelope-body">
               <div className="envelope-letter">
-                <p className="overline">Te invitamos</p>
+                <p className="overline">{envelope.overline}</p>
                 <h2>{couple.bride} <i>&</i> {couple.groom}</h2>
                 <p className="envelope-date">{date.display}</p>
-                <button type="button" onClick={handleOpenEnvelope}>Abrir sobre</button>
+                <p className="envelope-message">{envelope.message}</p>
+                <button type="button" onClick={handleOpenEnvelope}>{envelope.button}</button>
               </div>
             </div>
           </div>

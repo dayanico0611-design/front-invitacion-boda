@@ -16,6 +16,11 @@
     "location": "Chapanay · Concón / Quintero",
     "note": "Nos casamos"
   },
+  "envelope": {
+    "overline": "Te invitamos",
+    "message": "Abrimos las puertas a una noche para celebrar juntos.",
+    "button": "Abrir sobre"
+  },
   "intro": {
     "overline": "Querida familia, queridos amigos",
     "headline": "Hay noches que se esperan.",
