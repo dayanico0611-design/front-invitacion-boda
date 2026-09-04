@@ -10,6 +10,19 @@
 }
 
 main { background: var(--cream); color: var(--ink); overflow-x: hidden; }
+.page-open { display: flex; flex-direction: column; }
+.page-open .envelope-intro { order: 0; }
+.page-open .hero { order: 1; }
+.page-open .date-card { order: 2; }
+.page-open .countdown { order: 3; }
+.page-open .intro { order: 4; }
+.page-open .story-gallery { order: 5; }
+.page-open .day-plan { order: 6; }
+.page-open .details-band { order: 7; }
+.page-open .event-route { order: 8; }
+.page-open .gifts { order: 9; }
+.page-open .rsvp { order: 10; }
+.page-open footer { order: 11; }
 html { scroll-behavior: smooth; }
 * { box-sizing: border-box; }
 .bottom-nav { align-items: center; background: rgba(251, 250, 242, .94); backdrop-filter: blur(12px); border: 1px solid rgba(48, 75, 74, .16); border-radius: 999px; bottom: 18px; box-shadow: 0 18px 30px rgba(48, 75, 74, .14); display: flex; gap: 8px; justify-content: center; left: 50%; padding: 10px 12px; position: fixed; transform: translateX(-50%); width: min(94vw, 650px); z-index: 40; }
