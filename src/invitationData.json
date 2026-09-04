@@ -15,7 +15,7 @@
     "overline": "Una noche para celebrar el amor",
     "location": "Chapanay · Concón / Quintero",
     "note": "Nos casamos",
-    "image": "/fotos/IMG_2387.JPEG"
+    "image": "./fotos/IMG_2387.JPEG"
   },
   "envelope": {
     "overline": "Te invitamos",
@@ -29,13 +29,13 @@
     "text": "Después de decir que sí, queremos reunirnos bajo las luces, las flores y el cielo de Chapanay para celebrar el comienzo de nuestra vida juntos."
   },
   "gallery": [
-    { "image": "/fotos/IMG_5400.JPG", "alt": "Dayana y Nicolás en sus primeros años", "caption": "Desde el principio" },
-    { "image": "/fotos/IMG_2387.JPEG", "alt": "Dayana y Nicolás frente al mar", "caption": "Siempre juntos" },
-    { "image": "/fotos/IMG_2450.JPEG", "alt": "Dayana y Nicolás recorriendo la ciudad", "caption": "El mundo nos queda cerca" },
-    { "image": "/fotos/IMG_3604.JPEG", "alt": "Dayana y Nicolás en la nieve", "caption": "Aventura tras aventura" },
-    { "image": "/fotos/IMG_3624.JPG", "alt": "Dayana y Nicolás en un jardín", "caption": "Coleccionando momentos" },
-    { "image": "/fotos/IMG_3615.JPEG", "alt": "Dayana y Nicolás frente a la montaña", "caption": "Donde sea, contigo" },
-    { "image": "/fotos/IMG_2128.JPEG", "alt": "Dayana y Nicolás en su hogar", "caption": "Construyendo nuestro lugar" }
+    { "image": "./fotos/IMG_5400.JPG", "alt": "Dayana y Nicolás en sus primeros años", "caption": "Desde el principio" },
+    { "image": "./fotos/IMG_2387.JPEG", "alt": "Dayana y Nicolás frente al mar", "caption": "Siempre juntos" },
+    { "image": "./fotos/IMG_2450.JPEG", "alt": "Dayana y Nicolás recorriendo la ciudad", "caption": "El mundo nos queda cerca" },
+    { "image": "./fotos/IMG_3604.JPEG", "alt": "Dayana y Nicolás en la nieve", "caption": "Aventura tras aventura" },
+    { "image": "./fotos/IMG_3624.JPG", "alt": "Dayana y Nicolás en un jardín", "caption": "Coleccionando momentos" },
+    { "image": "./fotos/IMG_3615.JPEG", "alt": "Dayana y Nicolás frente a la montaña", "caption": "Donde sea, contigo" },
+    { "image": "./fotos/IMG_2128.JPEG", "alt": "Dayana y Nicolás en su hogar", "caption": "Construyendo nuestro lugar" }
   ],
   "calendar": {
     "title": "Matrimonio Dayana y Nicolás",

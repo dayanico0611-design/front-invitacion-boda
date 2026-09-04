@@ -88,12 +88,19 @@ section:hover, .gift-card:hover, .route-panel:hover, .program-item:hover, .date-
 .story-gallery { padding-bottom: 110px; padding-top: 20px; }
 .story-gallery-copy { margin: 0 auto 34px; max-width: 620px; text-align: center; }
 .story-gallery-copy h2 { color: var(--ink); font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 500; line-height: 1.08; margin: 0; }
-.gallery-grid { display: grid; gap: 20px; grid-template-columns: 1.3fr 1fr 1fr; }
+.gallery-story { display: grid; gap: 34px; grid-template-columns: repeat(12, 1fr); }
 .gallery-photo { border-radius: 3px; overflow: hidden; position: relative; box-shadow: 0 22px 36px rgba(48, 75, 74, .12); }
-.gallery-photo img { display: block; height: 100%; object-fit: cover; width: 100%; }
-.gallery-photo figcaption { background: linear-gradient(transparent, rgba(30, 50, 47, .72)); bottom: 0; color: var(--cream); font: .72rem 'Playfair Display', serif; left: 0; padding: 36px 16px 14px; position: absolute; right: 0; }
-.large-photo { min-height: 460px; }
-.small-photo { min-height: 220px; }
+.gallery-photo img { aspect-ratio: 4 / 5; display: block; height: 100%; object-fit: cover; width: 100%; }
+.gallery-photo figcaption { align-items: center; background: linear-gradient(transparent, rgba(30, 50, 47, .76)); bottom: 0; color: var(--cream); display: flex; font: 1rem 'Playfair Display', serif; gap: 12px; left: 0; padding: 44px 18px 16px; position: absolute; right: 0; }
+.gallery-photo figcaption span { color: var(--peach); font: .65rem 'DM Mono', monospace; }
+.memory-left { grid-column: 2 / span 5; }
+.memory-right { grid-column: 7 / span 5; margin-top: 92px; }
+@media (max-width: 700px) {
+  .gallery-story { display: block; }
+  .gallery-photo { margin: 0 0 26px; }
+  .memory-right { margin-top: 0; }
+  .gallery-photo img { aspect-ratio: 4 / 5; }
+}
 .date-card { align-items: center; border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: grid; gap: 40px; grid-template-columns: 1fr auto; max-width: 980px; padding-bottom: 62px; padding-top: 62px; }
 .date-card h2 { color: var(--ink); font: 2.7rem 'Playfair Display', serif; margin: 0; }
 .date-lead { color: var(--gold); font: .8rem 'DM Mono', monospace; margin: 18px 0 8px; text-transform: uppercase; }

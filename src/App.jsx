@@ -311,8 +311,8 @@ function App() {
           <p className="overline">Nuestra historia</p>
           <h2>Una historia que se hizo para ser celebrada.</h2>
         </div>
-        <div className="gallery-grid">
-          {gallery.map((item, index) => <figure className={`gallery-photo ${index === 0 ? 'large-photo' : 'small-photo'}`} key={item.image}><img src={item.image} alt={item.alt} /><figcaption>{item.caption}</figcaption></figure>)}
+        <div className="gallery-story">
+          {gallery.map((item, index) => <figure className={`gallery-photo ${index % 2 === 0 ? 'memory-left' : 'memory-right'}`} key={item.image}><img src={item.image} alt={item.alt} /><figcaption><span>{String(index + 1).padStart(2, '0')}</span>{item.caption}</figcaption></figure>)}
         </div>
       </section>
       <section className="date-card section-narrow" id="fecha"><div><p className="overline">Reserva la fecha</p><h2>{data.calendar.title}</h2><p className="date-lead">{date.display} · {data.calendar.time}</p><p className="date-place"><strong>{data.calendar.place}</strong><br />{data.calendar.address}</p><a className="location-link" href={data.calendar.maps} target="_blank" rel="noreferrer">Ver ubicación de la parroquia <span>↗</span></a><p className="reminder-note">Alerta incluida: {data.calendar.reminderDaysBefore} días antes</p></div><div className="date-actions"><a href={calendarEvent.googleUrl} target="_blank" rel="noreferrer">Agregar a Google Calendar <span>↗</span></a><button type="button" onClick={() => downloadCalendarFile(calendarEvent.ics)}>Calendario con alerta <span>↓</span></button></div></section>
