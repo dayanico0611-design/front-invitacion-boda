@@ -295,13 +295,15 @@ function App() {
         </div>
       </section>
 
-      <nav className="nav-shell"><a className="monogram" href="#inicio">{couple.shortMark}</a><div className="nav-links"><a href="#historia">La celebración</a><a href="#programa">El día</a><a href="#regalos">Regalos</a><a href="#rsvp">Confirmar</a><button type="button" className="nav-admin" onClick={() => setShowGuestList((current) => !current)}>{showGuestList ? 'Ocultar datos' : 'Ver registrados'}</button><button type="button" className="music-toggle" onClick={handleToggleMusic}>{isMusicPlaying ? 'Pausar música' : 'Reproducir música'}</button></div></nav>
-      <nav className="bottom-nav" aria-label="Navegación por la invitación">
-        <a href="#historia"><NavIcon type="story" />Historia</a>
-        <a href="#programa"><NavIcon type="program" />Programa</a>
-        <a href="#regalos"><NavIcon type="gift" />Regalos</a>
-        <a href="#rsvp"><NavIcon type="rsvp" />Confirmar</a>
-      </nav>
+      {isEnvelopeOpen && (
+        <nav className="bottom-nav" aria-label="Navegación por la invitación">
+          <a href="#historia"><NavIcon type="story" />Historia</a>
+          <a href="#programa"><NavIcon type="program" />Programa</a>
+          <a href="#regalos"><NavIcon type="gift" />Regalos</a>
+          <a href="#rsvp"><NavIcon type="rsvp" />Confirmar</a>
+          <button type="button" className="music-toggle" onClick={handleToggleMusic} aria-label={isMusicPlaying ? 'Pausar música' : 'Reproducir música'}><NavIcon type="music" />{isMusicPlaying ? 'Pausar' : 'Música'}</button>
+        </nav>
+      )}
       <section className="hero" id="inicio"><div className="hero-wash" /><div className="hero-copy"><p className="overline">{hero.overline}</p><h1>{couple.bride} <i>&</i> {couple.groom}</h1><p className="hero-date">{date.day} <span>·</span> {date.month} <span>·</span> {date.year}</p><p className="hero-location">{hero.location}</p><a className="scroll-cue" href="#historia">Descubrir la invitación <span>↓</span></a></div><p className="hero-note">{hero.note}</p></section>
       <section className="intro section-narrow" id="historia"><p className="overline">{intro.overline}</p><h2>{intro.headline}<br /><em>{intro.headlineEmphasis}</em></h2><p className="intro-text">{intro.text}</p><div className="ornament" aria-hidden="true">✳</div></section>
       <section className="story-gallery section-narrow" aria-label="Galería de la pareja">
@@ -379,6 +381,10 @@ function NavIcon({ type }) {
 
   if (type === 'rsvp') {
     return <svg {...commonProps}><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 3v-3h0A2.5 2.5 0 0 1 4 14.5z" /><path d="m8 10 3 2.2 5-4" /></svg>
+  }
+
+  if (type === 'music') {
+    return <svg {...commonProps}><path d="M9 18V5l10-2v13" /><circle cx="6.5" cy="18" r="3" /><circle cx="16.5" cy="16" r="3" /></svg>
   }
 
   return <svg {...commonProps}><path d="M12 20.5 4.8 13.6a4.2 4.2 0 0 1 6-5.9L12 8l1.2-1.3a4.2 4.2 0 1 1 6 5.9L12 20.5Z" /></svg>
