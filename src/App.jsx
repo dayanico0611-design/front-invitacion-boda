@@ -9,7 +9,7 @@ function App() {
   const [invitadoEncontrado, setInvitadoEncontrado] = useState(null)
   const [buscando, setBuscando] = useState(false)
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false)
-  const [showGuestList, setShowGuestList] = useState(false)
+  const [showGuestList, _setShowGuestList] = useState(false)
   const [registeredGuests, setRegisteredGuests] = useState(() => getStoredGuests())
   const [isMusicPlaying, setIsMusicPlaying] = useState(false)
   const [guestAccess, setGuestAccess] = useState({ checking: false, allowed: true, guest: null })
@@ -21,7 +21,7 @@ function App() {
     note: ''
   })
   const [remaining, setRemaining] = useState(getRemainingTime(data.date.iso))
-  const { couple, date, hero, envelope, intro, program, locations, details, gifts, rsvp, footer } = data
+  const { couple, date, hero, envelope, intro, gallery, program, locations, details, gifts, rsvp, footer } = data
   const splitAddress = (address) => address.split('\n').map((line, index) => <span key={`${line}-${index}`}>{line}<br /></span>)
   const calendarEvent = createCalendarEvent(data.calendar, date.iso)
   const sheetEndpoint = import.meta.env.VITE_RSVP_ENDPOINT
@@ -304,7 +304,7 @@ function App() {
           <button type="button" className="music-toggle" onClick={handleToggleMusic} aria-label={isMusicPlaying ? 'Pausar música' : 'Reproducir música'}><NavIcon type="music" />{isMusicPlaying ? 'Pausar' : 'Música'}</button>
         </nav>
       )}
-      <section className="hero" id="inicio"><div className="hero-wash" /><div className="hero-copy"><p className="overline">{hero.overline}</p><h1>{couple.bride} <i>&</i> {couple.groom}</h1><p className="hero-date">{date.day} <span>·</span> {date.month} <span>·</span> {date.year}</p><p className="hero-location">{hero.location}</p><a className="scroll-cue" href="#historia">Descubrir la invitación <span>↓</span></a></div><p className="hero-note">{hero.note}</p></section>
+      <section className="hero" id="inicio" style={{ '--hero-image': `url("${hero.image}")` }}><div className="hero-wash" /><div className="hero-copy"><p className="overline">{hero.overline}</p><h1>{couple.bride} <i>&</i> {couple.groom}</h1><p className="hero-date">{date.day} <span>·</span> {date.month} <span>·</span> {date.year}</p><p className="hero-location">{hero.location}</p><a className="scroll-cue" href="#historia">Descubrir la invitación <span>↓</span></a></div><p className="hero-note">{hero.note}</p></section>
       <section className="intro section-narrow" id="historia"><p className="overline">{intro.overline}</p><h2>{intro.headline}<br /><em>{intro.headlineEmphasis}</em></h2><p className="intro-text">{intro.text}</p><div className="ornament" aria-hidden="true">✳</div></section>
       <section className="story-gallery section-narrow" aria-label="Galería de la pareja">
         <div className="story-gallery-copy">
@@ -312,9 +312,7 @@ function App() {
           <h2>Una historia que se hizo para ser celebrada.</h2>
         </div>
         <div className="gallery-grid">
-          <div className="gallery-photo large-photo"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=80" alt="Pareja juntos" /></div>
-          <div className="gallery-photo small-photo"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=80" alt="Mirada de la pareja" /></div>
-          <div className="gallery-photo small-photo"><img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=700&q=80" alt="Momentos de la pareja" /></div>
+          {gallery.map((item, index) => <figure className={`gallery-photo ${index === 0 ? 'large-photo' : 'small-photo'}`} key={item.image}><img src={item.image} alt={item.alt} /><figcaption>{item.caption}</figcaption></figure>)}
         </div>
       </section>
       <section className="date-card section-narrow" id="fecha"><div><p className="overline">Reserva la fecha</p><h2>{data.calendar.title}</h2><p className="date-lead">{date.display} · {data.calendar.time}</p><p className="date-place"><strong>{data.calendar.place}</strong><br />{data.calendar.address}</p><a className="location-link" href={data.calendar.maps} target="_blank" rel="noreferrer">Ver ubicación de la parroquia <span>↗</span></a><p className="reminder-note">Alerta incluida: {data.calendar.reminderDaysBefore} días antes</p></div><div className="date-actions"><a href={calendarEvent.googleUrl} target="_blank" rel="noreferrer">Agregar a Google Calendar <span>↗</span></a><button type="button" onClick={() => downloadCalendarFile(calendarEvent.ics)}>Calendario con alerta <span>↓</span></button></div></section>

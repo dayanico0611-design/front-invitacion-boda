@@ -65,7 +65,7 @@ html { scroll-behavior: smooth; }
 .table-wrap th, .table-wrap td { border-bottom: 1px solid var(--line); color: var(--ink); font-size: .85rem; padding: 14px 16px; text-align: left; }
 .table-wrap th { background: rgba(170, 184, 163, .22); font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .09em; text-transform: uppercase; }
 .table-wrap tr:last-child td { border-bottom: 0; }
-.hero { align-items: flex-start; background: url('https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=2000&q=85') center/cover; display: flex; min-height: min(760px, 100svh); padding: clamp(130px, 20vh, 210px) clamp(24px, 12vw, 190px) 70px; position: relative; }
+.hero { align-items: flex-start; background: var(--hero-image) center/cover; display: flex; min-height: min(760px, 100svh); padding: clamp(130px, 20vh, 210px) clamp(24px, 12vw, 190px) 70px; position: relative; }
 .hero-wash { background: linear-gradient(90deg, rgba(28, 64, 66, .68), rgba(28, 64, 66, .12) 72%), linear-gradient(0deg, rgba(28, 64, 66, .45), transparent 50%); inset: 0; position: absolute; }
 .hero-copy { animation: rise .9s ease both; position: relative; z-index: 1; }
 section, .gift-card, .route-panel, .program-item, .date-card, .details-band > div { transition: transform .35s ease, opacity .35s ease, box-shadow .35s ease; }
@@ -89,8 +89,9 @@ section:hover, .gift-card:hover, .route-panel:hover, .program-item:hover, .date-
 .story-gallery-copy { margin: 0 auto 34px; max-width: 620px; text-align: center; }
 .story-gallery-copy h2 { color: var(--ink); font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 500; line-height: 1.08; margin: 0; }
 .gallery-grid { display: grid; gap: 20px; grid-template-columns: 1.3fr 1fr 1fr; }
-.gallery-photo { border-radius: 16px; overflow: hidden; box-shadow: 0 22px 36px rgba(85, 75, 71, .08); }
+.gallery-photo { border-radius: 3px; overflow: hidden; position: relative; box-shadow: 0 22px 36px rgba(48, 75, 74, .12); }
 .gallery-photo img { display: block; height: 100%; object-fit: cover; width: 100%; }
+.gallery-photo figcaption { background: linear-gradient(transparent, rgba(30, 50, 47, .72)); bottom: 0; color: var(--cream); font: .72rem 'Playfair Display', serif; left: 0; padding: 36px 16px 14px; position: absolute; right: 0; }
 .large-photo { min-height: 460px; }
 .small-photo { min-height: 220px; }
 .date-card { align-items: center; border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: grid; gap: 40px; grid-template-columns: 1fr auto; max-width: 980px; padding-bottom: 62px; padding-top: 62px; }
