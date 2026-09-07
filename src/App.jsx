@@ -7,12 +7,14 @@ function App() {
   const [open, setOpen] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [remaining, setRemaining] = useState(getRemainingTime(date.iso))
+  const [activeEvent, setActiveEvent] = useState(0)
   const [form, setForm] = useState({ nombre: '', attendance: '', guests: 1, note: '' })
   const [found, setFound] = useState(null)
   const [status, setStatus] = useState({ type: 'idle', message: '' })
   const [sent, setSent] = useState(false)
   const [guestName, setGuestName] = useState('')
   const audio = useRef(null)
+  const timelineRef = useRef(null)
   const endpoint = import.meta.env.VITE_RSVP_ENDPOINT
   const dressCode = details?.find((item) => item.icon === 'dress')?.text || 'Elegante'
 
@@ -25,6 +27,18 @@ function App() {
     audio.current = createRomanticMusic()
     return () => audio.current?.stop?.()
   }, [])
+
+  useEffect(() => {
+    const section = timelineRef.current
+    if (!section) return
+    const items = [...section.querySelectorAll('.timeline article')]
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+      if (visible) setActiveEvent(Number(visible.target.dataset.index))
+    }, { rootMargin: '-35% 0px -45% 0px', threshold: [0, .25, .5, .75, 1] })
+    items.forEach((item) => observer.observe(item))
+    return () => observer.disconnect()
+  }, [open, program.length])
 
   const toggleMusic = () => {
     if (!audio.current) return
@@ -106,7 +120,7 @@ function App() {
       <section className="welcome" id="historia"><div className="welcome-copy"><p className="eyebrow">{intro.overline}</p><h2>{intro.headline}<em>{intro.headlineEmphasis}</em></h2><p>{intro.text}</p><span className="signature">D &amp; N</span></div><div className="welcome-photo"><img src={gallery[1]?.image || hero.image} alt="Dayana y Nicolás"/><span className="photo-caption">un día para recordar</span></div></section>
       <section className="date-section" id="fecha"><div className="date-side"><span>20</span><small>02 · 2027</small></div><div className="date-main"><p className="eyebrow">Guarda esta fecha</p><h2>{date.day}<br/><em>{date.month}</em><br/>{date.year}</h2><p className="date-description">Queremos celebrar este comienzo junto a las personas que más queremos.</p><a className="line-link" href={data.calendar?.maps} target="_blank" rel="noreferrer">Ver ubicación ↗</a></div><div className="date-detail"><p><span>La ceremonia</span>{locations.church.time}<br/>{locations.church.name}</p><p><span>La celebración</span>{locations.venue.time}<br/>{locations.venue.name}</p></div></section>
       <section className="countdown"><p className="eyebrow">La cuenta regresiva</p><h2>Cada día falta un poquito menos.</h2><div className="count-grid">{Object.entries(remaining).map(([key, value]) => <div key={key}><strong>{String(value).padStart(2, '0')}</strong><span>{key}</span></div>)}</div></section>
-      <section className="day-section" id="dia"><div className="section-intro"><p className="eyebrow">20 · 02 · 2027</p><h2>Así imaginamos<br/><em>nuestro día.</em></h2></div><div className="day-layout"><div className="day-photo"><img src={gallery[0]?.image || hero.image} alt={gallery[0]?.alt || 'Nuestra historia'}/></div><div className="timeline">{program.map((item, index) => <article key={item.title}><span className="timeline-number">0{index + 1}</span><div><small>{item.time}</small><h3>{item.title}</h3><p>{item.description}</p></div></article>)}</div></div></section>
+      <section className="day-section" id="dia"><div className="section-intro"><p className="eyebrow">20 · 02 · 2027</p><h2>Así imaginamos<br/><em>nuestro día.</em></h2></div><div className="day-layout" ref={timelineRef}><div className="day-stage"><div className="day-photo"><img src={gallery[activeEvent % gallery.length]?.image || hero.image} alt={gallery[activeEvent % gallery.length]?.alt || 'Nuestra historia'}/><div className="day-photo-meta"><span>Momento {String(activeEvent + 1).padStart(2, '0')}</span><strong>{program[activeEvent]?.title}</strong></div></div><div className="day-progress" aria-hidden="true"><span style={{ height: `${((activeEvent + 1) / Math.max(program.length, 1)) * 100}%` }}/></div></div><div className="timeline">{program.map((item, index) => <article key={item.title} data-index={index} className={index === activeEvent ? 'is-active' : ''}><span className="timeline-number">0{index + 1}</span><div><small>{item.time}</small><h3>{item.title}</h3><p>{item.description}</p></div><span className="timeline-dot"/></article>)}</div></div></section>
       <section className="places-section"><div className="places-heading"><p className="eyebrow">Dónde nos encontramos</p><h2>Dos lugares,<br/><em>una celebración.</em></h2></div><div className="place place-one"><span className="place-number">01</span><p className="eyebrow">{locations.church.label}</p><h3>{locations.church.name}</h3><strong>{locations.church.time}</strong><p>{locations.church.description}</p><a className="line-link" href={locations.church.maps} target="_blank" rel="noreferrer">Abrir mapa ↗</a></div><div className="place place-two"><span className="place-number">02</span><p className="eyebrow">{locations.venue.label}</p><h3>{locations.venue.name}</h3><strong>{locations.venue.time}</strong><p>{locations.venue.description}</p><a className="line-link" href={locations.venue.maps} target="_blank" rel="noreferrer">Abrir mapa ↗</a></div></section>
       <section className="dress-section"><div className="dress-art">✽</div><p className="eyebrow">Dress code</p><h2>{dressCode}</h2><p>Queremos que todo se sienta tan especial como este día. Evitemos blanco, negro y azul para que los novios sean los protagonistas.</p></section>
       <section className="gallery-section" id="fotos"><div className="gallery-title"><p className="eyebrow">Algunos de nuestros momentos</p><h2>Un poquito<br/><em>de nosotros.</em></h2></div><div className="editorial-gallery">{gallery.map((item, index) => <figure key={item.image} className={`gallery-item gallery-${index + 1}`}><img src={item.image} alt={item.alt}/><figcaption><span>0{index + 1}</span>{item.caption}</figcaption></figure>)}</div></section>
