@@ -25,24 +25,20 @@ img{display:block;max-width:100%;height:auto}
 .date-description{margin-left:auto;margin-right:auto}
 .date-detail{text-align:center}
 
-/* FECHA: una sola fecha protagonista, sin repetir el 20 a la izquierda */
-.date-section{grid-template-columns:minmax(0,1fr) minmax(260px,.72fr)}
+/* FECHA: una sola fecha protagonista y completamente centrada */
+.date-section{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:42px;text-align:center}
 .date-side{display:none}
-.date-main{display:flex;flex-direction:column;align-items:center;text-align:center}
-.date-main h2{margin:0 0 25px;font-size:0;line-height:1.05;letter-spacing:-.04em}
-.date-main h2::after{content:'20 Febrero 2027';display:block;font:500 clamp(58px,7vw,100px)/.9 'Playfair Display',serif;color:var(--cream)}
+.date-main{width:min(900px,100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin:0 auto}
+.date-main h2{margin:0 0 28px;font-size:clamp(58px,8vw,112px);line-height:.92;letter-spacing:-.045em;text-align:center;color:var(--cream)}
+.date-main h2::after{content:none}
 .date-main .line-link{margin-top:12px}
+.date-detail{width:min(850px,100%);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:0 auto;text-align:center}
+.date-detail p{margin:0 auto;max-width:520px}
+.date-detail span{display:block}
 
-/* ITINERARIO: solo los seis hitos que importan */
-.timeline article{display:none}
-.timeline article:nth-child(1),
-.timeline article:nth-child(2),
-.timeline article:nth-child(3),
-.timeline article:nth-child(7),
-.timeline article:nth-child(12),
-.timeline article:nth-child(15){display:grid}
+/* ITINERARIO: solo los seis hitos solicitados */
+.timeline article{display:grid}
 .timeline article p{display:none}
-.timeline article.is-active{display:grid}
 .timeline h3{font-size:clamp(30px,4vw,42px)}
 
 @media(min-width:801px){
@@ -58,10 +54,10 @@ img{display:block;max-width:100%;height:auto}
   .welcome-copy>p:not(.eyebrow),.gift-copy>p:last-child,.rsvp-intro>p:last-child{margin-left:auto;margin-right:auto}
   .welcome-photo{width:min(82vw,360px)}
   .welcome-photo img{width:100%;max-width:100%}
-  .date-section{grid-template-columns:1fr}
-  .date-main{text-align:center}
-  .date-main h2::after{font-size:clamp(50px,13vw,78px)}
-  .date-detail{text-align:center}
+  .date-section{display:flex;flex-direction:column;align-items:center;gap:36px}
+  .date-main{text-align:center;width:100%}
+  .date-main h2{font-size:clamp(52px,13vw,82px);text-align:center}
+  .date-detail{width:100%;grid-template-columns:1fr;gap:24px;text-align:center}
   .day-layout{grid-template-columns:1fr;gap:55px}
   .day-stage{position:sticky;top:74px;height:55svh;min-height:350px;z-index:2}
   .day-photo{width:min(82vw,390px)}
