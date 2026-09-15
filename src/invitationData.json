@@ -8,7 +8,7 @@
     "day": "20",
     "month": "02",
     "year": "2027",
-    "display": "20 · 02 · 2027",
+    "display": "20 Febrero 2027",
     "iso": "2027-02-20T17:45:00-03:00"
   },
   "hero": {
@@ -54,15 +54,15 @@
     { "time": "20:15 hrs", "title": "Llegada de los novios", "description": "Los novios llegan al sector cocktail para compartir con todos." },
     { "time": "21:00 hrs", "title": "Ingreso al salón", "description": "Invitamos a todos a tomar sus lugares en el salón principal." },
     { "time": "21:15 hrs", "title": "Ingreso de los novios", "description": "Entrada de los novios al salón principal." },
-    { "time": "21:20 hrs", "title": "Inicio de la cena", "description": "Nos sentamos a disfrutar juntos de la cena." },
+    { "time": "21:20 hrs", "title": "Comida", "description": "Nos sentamos a disfrutar juntos de la cena." },
     { "time": "22:00 hrs", "title": "Discursos", "description": "Durante la cena compartiremos discursos de 3 a 4 personas, con tiempo limitado de 3 a 4 minutos." },
     { "time": "22:30 hrs", "title": "Corte de torta", "description": "Un momento dulce para celebrar juntos." },
     { "time": "22:45 hrs", "title": "Fotos por mesa", "description": "Fotos rápidas por mesa para guardar el recuerdo de todos." },
     { "time": "23:00 hrs", "title": "Vals", "description": "Nuestro primer baile como esposos." },
-    { "time": "23:05 hrs", "title": "Inicio de la fiesta", "description": "Se abre la pista. ¡A bailar!" },
+    { "time": "23:05 hrs", "title": "Inicio Fiesta", "description": "Se abre la pista. ¡A bailar!" },
     { "time": "00:00 hrs", "title": "Ramo + regalo", "description": "Ramo normal + entrega del regalo / caja de whiskey." },
     { "time": "00:30 hrs", "title": "Fiesta con DJ y cotillón", "description": "Se reanuda la fiesta con DJ y cotillón." },
-    { "time": "04:00 hrs", "title": "Fin de la fiesta", "description": "Cerramos la noche después de celebrar hasta que el cuerpo aguante." }
+    { "time": "04:00 hrs", "title": "Término Fiesta", "description": "Cerramos la noche después de celebrar hasta que el cuerpo aguante." }
   ],
   "locations": {
     "church": {
