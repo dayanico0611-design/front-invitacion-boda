@@ -1,6 +1,6 @@
 /* Ajustes finales de layout: este archivo se carga desde App.css */
 *,*::before,*::after{box-sizing:border-box}
-html,body,#root{width:100%;max-width:100%;overflow-x:hidden}
+html,body,#root{width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth}
 .site{width:100%;max-width:100%;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
 .hero-content,.section-intro,.places-heading,.gallery-title{margin-left:auto;margin-right:auto;text-align:center}
@@ -9,12 +9,21 @@ img{display:block;max-width:100%;height:auto}
 .welcome-copy>p:not(.eyebrow){margin-left:auto;margin-right:auto}
 .welcome-photo{width:min(100%,430px);margin-left:auto;margin-right:auto}
 .welcome-photo img{display:block;width:100%;max-width:400px;height:auto;margin-left:auto;margin-right:auto}
-.day-layout{width:min(1120px,calc(100% - 10px));margin-left:auto;margin-right:auto}
-.day-stage{min-width:0}
-.day-photo{width:min(100%,430px);max-width:430px;margin-left:auto;margin-right:auto}
-.day-photo img{width:100%;height:100%;max-width:100%;object-fit:cover}
-.timeline{min-width:0}
-.timeline h3,.timeline p{overflow-wrap:break-word}
+.day-layout{width:min(820px,calc(100% - 40px));margin:0 auto;display:block}
+.day-stage{display:none!important}
+.timeline{width:100%;max-width:760px;min-width:0;margin:55px auto 0;position:relative}
+.timeline::before{content:'';position:absolute;left:30px;top:18px;bottom:18px;width:1px;background:rgba(235,229,214,.22)}
+.timeline article{display:grid;grid-template-columns:60px minmax(0,1fr) 10px;align-items:center;gap:22px;position:relative;min-height:150px;padding:28px 18px 28px 0;opacity:.42;transform:translateY(14px);transition:opacity .75s ease,transform .75s cubic-bezier(.22,1,.36,1)}
+.timeline article.is-active{opacity:1;transform:translateY(0)}
+.timeline article::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(235,229,214,.10);transition:background .6s ease}
+.timeline article.is-active::after{background:rgba(210,174,105,.38)}
+.timeline .timeline-number{display:flex;align-items:center;justify-content:center;width:60px;height:60px;border:1px solid rgba(210,174,105,.38);border-radius:50%;font:500 12px/1 'DM Sans',sans-serif;letter-spacing:.12em;color:var(--gold);background:var(--green)}
+.timeline .timeline-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:.5;transition:transform .6s ease,opacity .6s ease;transform:scale(.7)}
+.timeline article.is-active .timeline-dot{opacity:1;transform:scale(1.35)}
+.timeline article small{display:block;margin-bottom:8px;font:500 11px/1 'DM Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.timeline h3{margin:0;font-size:clamp(30px,4vw,46px);line-height:1.05;overflow-wrap:break-word;transition:transform .75s cubic-bezier(.22,1,.36,1)}
+.timeline article.is-active h3{transform:translateX(5px)}
+.timeline article p{display:none}
 .editorial-gallery{width:min(1050px,100%);margin-left:auto;margin-right:auto}
 .gallery-item{width:100%;max-width:100%;overflow:hidden}
 .gallery-item img{display:block;width:100%;max-width:100%;height:auto;object-fit:cover}
@@ -36,11 +45,7 @@ img{display:block;max-width:100%;height:auto}
 .date-detail p{margin:0 auto;max-width:520px}
 .date-detail span{display:block}
 
-/* ITINERARIO: solo los seis hitos solicitados */
-.timeline article{display:grid}
-.timeline article p{display:none}
-.timeline h3{font-size:clamp(30px,4vw,42px)}
-
+/* ITINERARIO: seis hitos, sin galeria lateral y con transición suave al hacer scroll */
 @media(min-width:801px){
   .welcome-copy{justify-self:center}
   .welcome-photo{justify-self:center}
@@ -58,9 +63,14 @@ img{display:block;max-width:100%;height:auto}
   .date-main{text-align:center;width:100%}
   .date-main h2{font-size:clamp(52px,13vw,82px);text-align:center}
   .date-detail{width:100%;grid-template-columns:1fr;gap:24px;text-align:center}
-  .day-layout{grid-template-columns:1fr;gap:55px}
-  .day-stage{position:sticky;top:74px;height:55svh;min-height:350px;z-index:2}
-  .day-photo{width:min(82vw,390px)}
+  .day-layout{width:min(92vw,680px);display:block}
+  .day-stage{display:none!important}
+  .timeline{margin-top:42px}
+  .timeline::before{left:25px}
+  .timeline article{grid-template-columns:50px minmax(0,1fr) 8px;gap:16px;min-height:125px;padding:24px 4px 24px 0}
+  .timeline .timeline-number{width:50px;height:50px;font-size:10px}
+  .timeline h3{font-size:clamp(27px,8vw,38px)}
+  .timeline article.is-active h3{transform:none}
   .place{width:100%}
   .gallery-item{width:100%}
 }
