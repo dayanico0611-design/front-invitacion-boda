@@ -9,7 +9,7 @@
     "month": "02",
     "year": "2027",
     "display": "20 · 02 · 2027",
-    "iso": "2027-02-20T17:30:00-03:00"
+    "iso": "2027-02-20T17:45:00-03:00"
   },
   "hero": {
     "overline": "Una noche para celebrar el amor",
@@ -39,25 +39,37 @@
   ],
   "calendar": {
     "title": "Matrimonio Dayana y Nicolás",
-    "time": "17:30 hrs",
+    "time": "17:45 hrs",
     "place": "Parroquia Nuestra Señora de las Mercedes",
     "address": "Maroto 950, Concón, Región de Valparaíso",
     "maps": "https://maps.app.goo.gl/JyE2mYV2eyToXfx5A?g_st=iw",
     "reminderDaysBefore": 7,
     "durationHours": 10,
-    "description": "Ceremonia de Dayana y Nicolás. La celebración continúa en Centro de Eventos Chapanay."
+    "description": "Los esperamos a las 17:45 hrs en la parroquia. Luego la celebración continúa en Centro de Eventos Chapanay."
   },
   "program": [
-    { "time": "17:30 hrs", "title": "Ceremonia", "description": "Nos encontramos en la Parroquia Nuestra Señora de las Mercedes." },
-    { "time": "19:30 hrs", "title": "La celebración", "description": "Nos trasladamos a Centro de Eventos Chapanay para brindar y compartir." },
-    { "time": "Después", "title": "La fiesta", "description": "Una noche para celebrar juntos hasta que el cuerpo aguante." }
+    { "time": "17:45 hrs", "title": "Ceremonia", "description": "Llegada de invitados a la Parroquia Nuestra Señora de las Mercedes." },
+    { "time": "19:30 hrs", "title": "Recepción de invitados", "description": "Llegada de invitados al Centro de Eventos Chapanay." },
+    { "time": "20:00 hrs", "title": "Cóctel", "description": "Comenzamos la celebración con un cóctel en Chapanay." },
+    { "time": "20:15 hrs", "title": "Llegada de los novios", "description": "Los novios llegan al sector cocktail para compartir con todos." },
+    { "time": "21:00 hrs", "title": "Ingreso al salón", "description": "Invitamos a todos a tomar sus lugares en el salón principal." },
+    { "time": "21:15 hrs", "title": "Ingreso de los novios", "description": "Entrada de los novios al salón principal." },
+    { "time": "21:20 hrs", "title": "Inicio de la cena", "description": "Nos sentamos a disfrutar juntos de la cena." },
+    { "time": "22:00 hrs", "title": "Discursos", "description": "Durante la cena compartiremos discursos de 3 a 4 personas, con tiempo limitado de 3 a 4 minutos." },
+    { "time": "22:30 hrs", "title": "Corte de torta", "description": "Un momento dulce para celebrar juntos." },
+    { "time": "22:45 hrs", "title": "Fotos por mesa", "description": "Fotos rápidas por mesa para guardar el recuerdo de todos." },
+    { "time": "23:00 hrs", "title": "Vals", "description": "Nuestro primer baile como esposos." },
+    { "time": "23:05 hrs", "title": "Inicio de la fiesta", "description": "Se abre la pista. ¡A bailar!" },
+    { "time": "00:00 hrs", "title": "Ramo + regalo", "description": "Ramo normal + entrega del regalo / caja de whiskey." },
+    { "time": "00:30 hrs", "title": "Fiesta con DJ y cotillón", "description": "Se reanuda la fiesta con DJ y cotillón." },
+    { "time": "04:00 hrs", "title": "Fin de la fiesta", "description": "Cerramos la noche después de celebrar hasta que el cuerpo aguante." }
   ],
   "locations": {
     "church": {
       "number": "01",
       "label": "La ceremonia",
       "name": "Parroquia Nuestra Señora de las Mercedes",
-      "time": "17:30 hrs",
+      "time": "Llegada 17:45 hrs",
       "description": "Los esperamos para compartir el momento en que nuestras historias se vuelven una.",
       "address": "Maroto 950\nConcón, Valparaíso",
       "maps": "https://maps.app.goo.gl/JyE2mYV2eyToXfx5A?g_st=iw",
@@ -67,8 +79,8 @@
       "number": "02",
       "label": "La celebración",
       "name": "Centro de Eventos Chapanay",
-      "time": "19:30 — 20:00 hrs",
-      "description": "La fiesta comienza al caer la noche. Flores, copas y una pista esperando por nosotros.",
+      "time": "Desde 19:30 hrs",
+      "description": "La celebración comienza con la llegada de invitados y continúa con cóctel, cena y fiesta hasta las 04:00 hrs.",
       "address": "Las Palmeras s/n\nMantagua, Quintero",
       "maps": "https://maps.app.goo.gl/vaXpbVKgHn9XB4x99?g_st=iw",
       "waze": "https://waze.com/ul/h66jjj90kg"
