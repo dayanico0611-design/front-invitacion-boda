@@ -24,6 +24,27 @@ img{display:block;max-width:100%;height:auto}
 .date-main{text-align:center}
 .date-description{margin-left:auto;margin-right:auto}
 .date-detail{text-align:center}
+
+/* FECHA: una sola fecha protagonista, sin repetir el 20 a la izquierda */
+.date-section{grid-template-columns:minmax(0,1fr) minmax(260px,.72fr)}
+.date-side{display:none}
+.date-main{display:flex;flex-direction:column;align-items:center;text-align:center}
+.date-main h2{margin:0 0 25px;font-size:0;line-height:1.05;letter-spacing:-.04em}
+.date-main h2::after{content:'20 Febrero 2027';display:block;font:500 clamp(58px,7vw,100px)/.9 'Playfair Display',serif;color:var(--cream)}
+.date-main .line-link{margin-top:12px}
+
+/* ITINERARIO: solo los seis hitos que importan */
+.timeline article{display:none}
+.timeline article:nth-child(1),
+.timeline article:nth-child(2),
+.timeline article:nth-child(3),
+.timeline article:nth-child(7),
+.timeline article:nth-child(12),
+.timeline article:nth-child(15){display:grid}
+.timeline article p{display:none}
+.timeline article.is-active{display:grid}
+.timeline h3{font-size:clamp(30px,4vw,42px)}
+
 @media(min-width:801px){
   .welcome-copy{justify-self:center}
   .welcome-photo{justify-self:center}
@@ -39,6 +60,7 @@ img{display:block;max-width:100%;height:auto}
   .welcome-photo img{width:100%;max-width:100%}
   .date-section{grid-template-columns:1fr}
   .date-main{text-align:center}
+  .date-main h2::after{font-size:clamp(50px,13vw,78px)}
   .date-detail{text-align:center}
   .day-layout{grid-template-columns:1fr;gap:55px}
   .day-stage{position:sticky;top:74px;height:55svh;min-height:350px;z-index:2}
