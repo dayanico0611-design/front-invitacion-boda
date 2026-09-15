@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Parisienne&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+@import './fixes.css';
 :root{--ink:#252323;--ink2:#494341;--blue:#26352f;--blue2:#40534a;--cream:#f6f0e4;--cream2:#ebe2d3;--white:#fffdf8;--gold:#a78655;--gold2:#c8ad7c;--sage:#a9b09f;--wine:#6f3440;--line:rgba(37,35,35,.18);--shadow:0 28px 80px rgba(38,32,27,.16)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif}button,input,select,textarea{font:inherit}img{display:block;max-width:100%;height:auto}a{color:inherit}.site{min-height:100vh;width:100%;overflow-x:hidden;background:var(--cream)}
 .eyebrow{margin:0 0 18px;font-size:9px;line-height:1.4;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}.monogram{display:inline-block;font-family:'Playfair Display',serif;font-style:italic;font-weight:500;letter-spacing:-.08em}.monogram.light{color:var(--cream)}
