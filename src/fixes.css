@@ -1,1 +1,54 @@
-img{max-width:100%;height:auto}.site{width:100%;overflow-x:hidden}.hero-content,.section-intro,.places-heading,.gallery-title{text-align:center}.hero-content{margin-left:auto;margin-right:auto}.welcome-photo{width:min(100%,430px);margin-left:auto;margin-right:auto}.welcome-photo img{display:block;width:100%;max-width:400px;margin:auto}.day-photo{width:min(100%,430px);max-width:430px;margin:auto}.day-photo img{width:100%;height:100%;object-fit:cover}.editorial-gallery{width:min(100%,1000px);margin-left:auto;margin-right:auto}.gallery-item{width:100%;max-width:100%;overflow:hidden}.gallery-item img{width:100%;max-width:100%;height:auto;object-fit:cover}.gift-copy,.rsvp-intro{max-width:620px}@media(min-width:801px){.welcome-copy{max-width:560px;margin-left:auto}.gift-copy{margin-left:auto}}@media(max-width:800px){.hero-content,.welcome-copy,.section-intro,.places-heading,.gallery-title,.gift-copy,.rsvp-intro{text-align:center;margin-left:auto;margin-right:auto}.welcome-copy>p:not(.eyebrow),.gift-copy>p:last-child,.rsvp-intro>p:last-child{margin-left:auto;margin-right:auto}.welcome-photo{width:min(82vw,360px)}.welcome-photo img{width:100%;max-width:100%}.day-photo{width:min(82vw,390px)}.place{width:100%}.gallery-item{width:100%}}@media(max-width:430px){.cover-card{overflow:hidden}.hero-content{width:calc(100% - 40px)}.hero h2{max-width:100%;overflow-wrap:anywhere}.gallery-item img{max-height:520px}}
+/* Ajustes finales de layout: este archivo se carga desde App.css */
+*,*::before,*::after{box-sizing:border-box}
+html,body,#root{width:100%;max-width:100%;overflow-x:hidden}
+.site{width:100%;max-width:100%;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+.hero-content,.section-intro,.places-heading,.gallery-title{margin-left:auto;margin-right:auto;text-align:center}
+.hero-content{width:min(900px,calc(100% - 40px))}
+.welcome-copy{max-width:560px;margin-left:auto;margin-right:auto;text-align:center}
+.welcome-copy>p:not(.eyebrow){margin-left:auto;margin-right:auto}
+.welcome-photo{width:min(100%,430px);margin-left:auto;margin-right:auto}
+.welcome-photo img{display:block;width:100%;max-width:400px;height:auto;margin-left:auto;margin-right:auto}
+.day-layout{width:min(1120px,calc(100% - 10px));margin-left:auto;margin-right:auto}
+.day-stage{min-width:0}
+.day-photo{width:min(100%,430px);max-width:430px;margin-left:auto;margin-right:auto}
+.day-photo img{width:100%;height:100%;max-width:100%;object-fit:cover}
+.timeline{min-width:0}
+.timeline h3,.timeline p{overflow-wrap:break-word}
+.editorial-gallery{width:min(1050px,100%);margin-left:auto;margin-right:auto}
+.gallery-item{width:100%;max-width:100%;overflow:hidden}
+.gallery-item img{display:block;width:100%;max-width:100%;height:auto;object-fit:cover}
+.places-heading h2,.gallery-title h2,.section-intro h2{text-align:center}
+.place h3,.place p:not(.eyebrow){max-width:100%}
+.gift-copy,.rsvp-intro{max-width:620px;margin-left:auto;margin-right:auto;text-align:center}
+.date-main{text-align:center}
+.date-description{margin-left:auto;margin-right:auto}
+.date-detail{text-align:center}
+@media(min-width:801px){
+  .welcome-copy{justify-self:center}
+  .welcome-photo{justify-self:center}
+  .gift-copy{justify-self:center}
+}
+@media(max-width:800px){
+  .floating-nav{width:calc(100vw - 24px)}
+  .floating-nav nav{display:none}
+  .welcome{width:min(82vw,600px);grid-template-columns:1fr;gap:75px;padding:110px 0}
+  .welcome-copy,.section-intro,.places-heading,.gallery-title,.gift-copy,.rsvp-intro{text-align:center;margin-left:auto;margin-right:auto}
+  .welcome-copy>p:not(.eyebrow),.gift-copy>p:last-child,.rsvp-intro>p:last-child{margin-left:auto;margin-right:auto}
+  .welcome-photo{width:min(82vw,360px)}
+  .welcome-photo img{width:100%;max-width:100%}
+  .date-section{grid-template-columns:1fr}
+  .date-main{text-align:center}
+  .date-detail{text-align:center}
+  .day-layout{grid-template-columns:1fr;gap:55px}
+  .day-stage{position:sticky;top:74px;height:55svh;min-height:350px;z-index:2}
+  .day-photo{width:min(82vw,390px)}
+  .place{width:100%}
+  .gallery-item{width:100%}
+}
+@media(max-width:430px){
+  .cover-card{overflow:hidden}
+  .hero-content{width:calc(100% - 40px)}
+  .hero h2{max-width:100%;overflow-wrap:anywhere}
+  .gallery-item img{max-height:520px}
+}
