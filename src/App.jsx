@@ -1,22 +1,28 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import './palette.css'
 import data from './invitationData.json'
 
+const FAQS = [
+  { q: '¿Habrá guardarropía?', a: 'Sí. El lugar contará con servicio de guardarropía para que puedan disfrutar tranquilos durante la celebración.' },
+  { q: '¿Hay estacionamientos?', a: 'Sí, Centro de Eventos Chapanay cuenta con estacionamientos para los invitados.' },
+  { q: '¿Habrá servicio de transporte?', a: 'Si necesitan coordinar transporte para llegar o regresar, avísennos con anticipación y vemos juntos la mejor alternativa.' },
+  { q: '¿A qué hora debo llegar?', a: 'La ceremonia comienza a las 17:45 hrs en la Parroquia Nuestra Señora de las Mercedes. La celebración en Chapanay comienza desde las 19:30 hrs.' },
+  { q: '¿Qué debo usar?', a: 'El outfit es elegante – formal. En la sección Dress code encontrarán algunos ejemplos para orientarse.' },
+]
+
 function App() {
-  const { couple, date, hero, envelope, intro, gallery, program, locations, details, gifts, rsvp, footer } = data
+  const { couple, date, hero, envelope, intro, gallery, program, locations, gifts, rsvp, footer } = data
   const [open, setOpen] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [remaining, setRemaining] = useState(getRemainingTime(date.iso))
-  const [activeEvent, setActiveEvent] = useState(0)
   const [form, setForm] = useState({ nombre: '', attendance: '', guests: 1, note: '' })
   const [found, setFound] = useState(null)
   const [status, setStatus] = useState({ type: 'idle', message: '' })
   const [sent, setSent] = useState(false)
   const [guestName, setGuestName] = useState('')
   const audio = useRef(null)
-  const timelineRef = useRef(null)
   const endpoint = import.meta.env.VITE_RSVP_ENDPOINT
-  const dressCode = details?.find((item) => item.icon === 'dress')?.text || 'Elegante'
   const featuredTitles = new Set(['Ceremonia', 'Recepción de invitados', 'Cóctel', 'Comida', 'Inicio Fiesta', 'Término Fiesta'])
   const featuredProgram = program.filter((item) => featuredTitles.has(item.title))
 
@@ -30,35 +36,14 @@ function App() {
     return () => audio.current?.stop?.()
   }, [])
 
-  useEffect(() => {
-    const section = timelineRef.current
-    if (!section) return
-    const items = [...section.querySelectorAll('.timeline article')]
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-      if (visible) setActiveEvent(Number(visible.target.dataset.index))
-    }, { rootMargin: '-35% 0px -45% 0px', threshold: [0, .25, .5, .75, 1] })
-    items.forEach((item) => observer.observe(item))
-    return () => observer.disconnect()
-  }, [open, featuredProgram.length])
-
   const toggleMusic = () => {
     if (!audio.current) return
-    if (playing) {
-      audio.current.stop()
-      setPlaying(false)
-    } else {
-      audio.current.start()
-      setPlaying(true)
-    }
+    if (playing) { audio.current.stop(); setPlaying(false) } else { audio.current.start(); setPlaying(true) }
   }
 
   const openInvitation = () => {
     setOpen(true)
-    if (!playing) {
-      audio.current?.start()
-      setPlaying(true)
-    }
+    if (!playing) { audio.current?.start(); setPlaying(true) }
     setTimeout(() => document.getElementById('inicio')?.scrollIntoView({ behavior: 'smooth' }), 350)
   }
 
@@ -105,9 +90,7 @@ function App() {
       setGuestName(payload.name)
       setSent(true)
       setStatus({ type: 'success', message: 'Tu confirmación quedó registrada.' })
-    } catch (error) {
-      setStatus({ type: 'error', message: error.message })
-    }
+    } catch (error) { setStatus({ type: 'error', message: error.message }) }
   }
 
   if (endpoint) {
@@ -117,15 +100,16 @@ function App() {
 
   return <main className={open ? 'site is-open' : 'site'}>
     {!open ? <section className="cover-screen"><div className="cover-botanical botanical-left">❦</div><div className="cover-botanical botanical-right">❧</div><div className="cover-card"><p className="eyebrow">{envelope.overline}</p><span className="monogram">{couple.shortMark}</span><p className="cover-small">NOS CASAMOS</p><h1>{couple.bride}<i>&amp;</i>{couple.groom}</h1><div className="fine-line"/><p className="cover-date">{date.display}</p><p className="cover-message">{envelope.message}</p><button className="text-button" onClick={openInvitation}>Entrar a la invitación <span>↓</span></button></div></section> : <>
-      <header className="floating-nav"><a href="#inicio" className="nav-mark">D&amp;N</a><nav><a href="#historia">Historia</a><a href="#fecha">Fecha</a><a href="#dia">El día</a><a href="#fotos">Fotos</a><a href="#rsvp">Confirmar</a></nav><button className="music-button" onClick={toggleMusic} aria-label="Activar o pausar música"><span className={playing ? 'music-bars playing' : 'music-bars'}><i/><i/><i/></span>{playing ? 'Pausa' : 'Música'}</button></header>
+      <header className="floating-nav"><a href="#inicio" className="nav-mark">D&amp;N</a><nav><a href="#historia">Historia</a><a href="#fecha">Fecha</a><a href="#dia">El día</a><a href="#dress">Dress code</a><a href="#faq">FAQ</a><a href="#rsvp">Confirmar</a></nav><button className="music-button" onClick={toggleMusic} aria-label="Activar o pausar música"><span className={playing ? 'music-bars playing' : 'music-bars'}><i/><i/><i/></span>{playing ? 'Pausa' : 'Música'}</button></header>
       <section className="hero" id="inicio"><div className="hero-image" style={{ backgroundImage: `url("${hero.image}")` }}/><div className="hero-wash"/><div className="hero-frame"/><div className="hero-content"><p className="eyebrow">{hero.overline}</p><span className="monogram light">{couple.shortMark}</span><h2>{couple.bride}<i>&amp;</i>{couple.groom}</h2><div className="hero-rule"/><p>{hero.location}</p></div><div className="scroll-note">desliza <span>↓</span></div></section>
       <section className="welcome" id="historia"><div className="welcome-copy"><p className="eyebrow">{intro.overline}</p><h2>{intro.headline}<em>{intro.headlineEmphasis}</em></h2><p>{intro.text}</p><span className="signature">D &amp; N</span></div><div className="welcome-photo"><img src={gallery[1]?.image || hero.image} alt="Dayana y Nicolás"/><span className="photo-caption">un día para recordar</span></div></section>
       <section className="date-section" id="fecha"><div className="date-main"><p className="eyebrow">Guarda esta fecha</p><h2>{date.display}</h2><p className="date-description">Queremos celebrar este comienzo junto a las personas que más queremos.</p><a className="line-link" href={data.calendar?.maps} target="_blank" rel="noreferrer">Ver ubicación ↗</a></div><div className="date-detail"><p><span>La ceremonia</span>{locations.church.time}<br/>{locations.church.name}</p><p><span>La celebración</span>{locations.venue.time}<br/>{locations.venue.name}</p></div></section>
       <section className="countdown"><p className="eyebrow">La cuenta regresiva</p><h2>Cada día falta un poquito menos.</h2><div className="count-grid">{Object.entries(remaining).map(([key, value]) => <div key={key}><strong>{String(value).padStart(2, '0')}</strong><span>{key}</span></div>)}</div></section>
-      <section className="day-section" id="dia"><div className="section-intro"><p className="eyebrow">20 · 02 · 2027</p><h2>Así imaginamos<br/><em>nuestro día.</em></h2></div><div className="day-layout" ref={timelineRef}><div className="day-stage"><div className="day-photo"><img src={gallery[activeEvent % gallery.length]?.image || hero.image} alt={gallery[activeEvent % gallery.length]?.alt || 'Nuestra historia'}/><div className="day-photo-meta"><span>Momento {String(activeEvent + 1).padStart(2, '0')}</span><strong>{featuredProgram[activeEvent]?.title}</strong></div></div><div className="day-progress" aria-hidden="true"><span style={{ height: `${((activeEvent + 1) / Math.max(featuredProgram.length, 1)) * 100}%` }}/></div></div><div className="timeline">{featuredProgram.map((item, index) => <article key={item.title} data-index={index} className={index === activeEvent ? 'is-active' : ''}><span className="timeline-number">0{index + 1}</span><div><small>{item.time}</small><h3>{item.title}</h3><p>{item.description}</p></div><span className="timeline-dot"/></article>)}</div></div></section>
+      <section className="day-section" id="dia"><div className="section-intro"><p className="eyebrow">20 · 02 · 2027</p><h2>Así imaginamos<br/><em>nuestro día.</em></h2></div><div className="timeline centered-timeline">{featuredProgram.map((item, index) => <article key={item.title}><span className="timeline-number">0{index + 1}</span><div><small>{item.time}</small><h3>{item.title}</h3><p>{item.description}</p></div><span className="timeline-dot"/></article>)}</div></section>
       <section className="places-section"><div className="places-heading"><p className="eyebrow">Dónde nos encontramos</p><h2>Dos lugares,<br/><em>una celebración.</em></h2></div><div className="place place-one"><span className="place-number">01</span><p className="eyebrow">{locations.church.label}</p><h3>{locations.church.name}</h3><strong>{locations.church.time}</strong><p>{locations.church.description}</p><a className="line-link" href={locations.church.maps} target="_blank" rel="noreferrer">Abrir mapa ↗</a></div><div className="place place-two"><span className="place-number">02</span><p className="eyebrow">{locations.venue.label}</p><h3>{locations.venue.name}</h3><strong>{locations.venue.time}</strong><p>{locations.venue.description}</p><a className="line-link" href={locations.venue.maps} target="_blank" rel="noreferrer">Abrir mapa ↗</a></div></section>
-      <section className="dress-section"><div className="dress-art">✽</div><p className="eyebrow">Dress code</p><h2>{dressCode}</h2><p>Queremos que todo se sienta tan especial como este día. Evitemos blanco, negro y azul para que los novios sean los protagonistas.</p></section>
+      <section className="dress-section" id="dress"><div className="dress-art">✽</div><p className="eyebrow">Dress code</p><h2>Elegante – formal</h2><p>Queremos que se sientan cómodos y especiales para celebrar con nosotros. Algunas ideas: vestidos largos o midi elegantes, trajes, ternos, blazers, pantalón de vestir y zapatos formales.</p><div className="dress-examples"><div><span>01</span><strong>Ellas</strong><p>Vestidos midi o largos, telas elegantes, accesorios delicados y zapatos de vestir.</p></div><div><span>02</span><strong>Ellos</strong><p>Traje o terno, camisa, zapatos de vestir y accesorios sobrios.</p></div></div><p className="dress-note">Para las mujeres, les pedimos solamente evitar el blanco, ya que ese color estará reservado para la novia. 🤍</p></section>
       <section className="gallery-section" id="fotos"><div className="gallery-title"><p className="eyebrow">Algunos de nuestros momentos</p><h2>Un poquito<br/><em>de nosotros.</em></h2></div><div className="editorial-gallery">{gallery.map((item, index) => <figure key={item.image} className={`gallery-item gallery-${index + 1}`}><img src={item.image} alt={item.alt}/><figcaption><span>0{index + 1}</span>{item.caption}</figcaption></figure>)}</div></section>
+      <section className="faq-section" id="faq"><div className="faq-heading"><p className="eyebrow">Para que disfruten tranquilos</p><h2>Preguntas<br/><em>frecuentes.</em></h2><p>Si se nos ocurre alguna otra información importante, la iremos agregando aquí.</p></div><div className="faq-list">{FAQS.map((item, index) => <details key={item.q} className="faq-item"><summary><span>0{index + 1}</span><strong>{item.q}</strong><i>+</i></summary><p>{item.a}</p></details>)}</div></section>
       <section className="gift-section" id="regalos"><div className="gift-copy"><p className="eyebrow">Mesa de regalos</p><h2>Lo más importante es que estén con nosotros.</h2><p>{gifts.description}</p></div><div className="gift-card"><span className="gift-symbol">♧</span><p>{gifts.store}</p><strong>{gifts.code || 'Lista de novios'}</strong><a href="https://club.noviosparis.cl/home/couple-catalog/21046698" target="_blank" rel="noreferrer">Ver lista de regalos ↗</a></div></section>
       <section className="rsvp-section" id="rsvp"><div className="rsvp-intro"><span className="monogram">D&amp;N</span><p className="eyebrow">{rsvp.overline}</p><h2>{rsvp.title}</h2><p>{rsvp.description}</p></div>{sent ? <div className="success-card"><span>♥</span><h3>Gracias, {guestName}.</h3><p>{rsvp.successText}</p></div> : <form onSubmit={submit}><label>Tu nombre<input name="nombre" value={form.nombre} onChange={change} placeholder="Escribe tu nombre" required/></label><button type="button" className="secondary-button" onClick={searchGuest} disabled={!form.nombre.trim()}>Buscar mi nombre</button><label>¿Nos acompañas?<select name="attendance" value={form.attendance} onChange={change} required><option value="" disabled>Selecciona una opción</option>{rsvp.attendanceOptions.map((option) => <option key={option}>{option}</option>)}</select></label><label>Personas<input name="guests" type="number" min="1" max={found?.adicionales || 10} value={form.guests} onChange={change}/></label><label>Un mensaje para los novios<textarea name="note" value={form.note} onChange={change} placeholder="Algo que quieras contarnos..."/></label>{status.type !== 'idle' && <p className={`form-status ${status.type}`}>{status.message}</p>}<button type="submit" className="submit-button">Confirmar asistencia <span>↗</span></button></form>}</section>
       <footer className="footer"><span className="monogram light">{couple.shortMark}</span><p>{footer}</p><small>{date.display}</small></footer>
@@ -139,25 +123,8 @@ function createRomanticMusic() {
   let active = false
   const notes = [261.63, 329.63, 392, 523.25, 392, 329.63, 293.66, 349.23, 440, 523.25, 440, 349.23]
   let index = 0
-  const playNote = () => {
-    if (!ctx || !active) return
-    const now = ctx.currentTime
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.type = 'sine'
-    osc.frequency.value = notes[index % notes.length]
-    gain.gain.setValueAtTime(0.0001, now)
-    gain.gain.exponentialRampToValueAtTime(0.045, now + 0.08)
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2)
-    osc.connect(gain).connect(ctx.destination)
-    osc.start(now)
-    osc.stop(now + 2.25)
-    index += 1
-  }
-  return {
-    start() { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); active = true; ctx.resume(); playNote(); timer = setInterval(playNote, 900) },
-    stop() { active = false; clearInterval(timer); if (ctx) ctx.suspend() },
-  }
+  const playNote = () => { if (!ctx || !active) return; const now = ctx.currentTime; const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.type = 'sine'; osc.frequency.value = notes[index % notes.length]; gain.gain.setValueAtTime(0.0001, now); gain.gain.exponentialRampToValueAtTime(0.045, now + 0.08); gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2); osc.connect(gain).connect(ctx.destination); osc.start(now); osc.stop(now + 2.25); index += 1 }
+  return { start() { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); active = true; ctx.resume(); playNote(); timer = setInterval(playNote, 900) }, stop() { active = false; clearInterval(timer); if (ctx) ctx.suspend() } }
 }
 
 function Access({ message }) { return <main className="access-screen"><div className="access-card"><span className="monogram">D&amp;N</span><p className="eyebrow">Invitación</p><h2>{message}</h2><p>Si crees que es un error, contacta a Dayana o Nicolás.</p></div></main> }
