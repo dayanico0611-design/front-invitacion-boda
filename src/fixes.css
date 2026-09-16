@@ -1,3 +1,5 @@
+@import './mobile-fixes.css';
+
 /* Ajustes finales de layout: este archivo se carga desde App.css */
 *,*::before,*::after{box-sizing:border-box}
 html,body,#root{width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth}
@@ -33,7 +35,6 @@ img{display:block;max-width:100%;height:auto}
 .date-main{text-align:center}
 .date-description{margin-left:auto;margin-right:auto}
 .date-detail{text-align:center}
-
 .date-section{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:42px;text-align:center}
 .date-side{display:none}
 .date-main{width:min(900px,100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin:0 auto}
@@ -43,12 +44,7 @@ img{display:block;max-width:100%;height:auto}
 .date-detail{width:min(850px,100%);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:0 auto;text-align:center}
 .date-detail p{margin:0 auto;max-width:520px}
 .date-detail span{display:block}
-
-@media(min-width:801px){
-  .welcome-copy{justify-self:center}
-  .welcome-photo{justify-self:center}
-  .gift-copy{justify-self:center}
-}
+@media(min-width:801px){.welcome-copy{justify-self:center}.welcome-photo{justify-self:center}.gift-copy{justify-self:center}}
 @media(max-width:800px){
   .floating-nav{width:calc(100vw - 24px)}
   .floating-nav nav{display:none}
@@ -72,11 +68,4 @@ img{display:block;max-width:100%;height:auto}
   .place{width:100%}
   .gallery-item{width:100%}
 }
-@media(max-width:430px){
-  .cover-card{overflow:hidden}
-  .hero-content{width:calc(100% - 40px)}
-  .hero h2{max-width:100%;overflow-wrap:anywhere}
-  .gallery-item img{max-height:520px}
-}
-
-@import './mobile-fixes.css';
+@media(max-width:430px){.cover-card{overflow:hidden}.hero-content{width:calc(100% - 40px)}.hero h2{max-width:100%;overflow-wrap:anywhere}.gallery-item img{max-height:520px}}
