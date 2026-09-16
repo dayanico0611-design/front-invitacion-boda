@@ -34,7 +34,6 @@ img{display:block;max-width:100%;height:auto}
 .date-description{margin-left:auto;margin-right:auto}
 .date-detail{text-align:center}
 
-/* FECHA: una sola fecha protagonista y completamente centrada */
 .date-section{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:42px;text-align:center}
 .date-side{display:none}
 .date-main{width:min(900px,100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin:0 auto}
@@ -45,7 +44,6 @@ img{display:block;max-width:100%;height:auto}
 .date-detail p{margin:0 auto;max-width:520px}
 .date-detail span{display:block}
 
-/* ITINERARIO: seis hitos, sin galeria lateral y con transición suave al hacer scroll */
 @media(min-width:801px){
   .welcome-copy{justify-self:center}
   .welcome-photo{justify-self:center}
@@ -80,3 +78,5 @@ img{display:block;max-width:100%;height:auto}
   .hero h2{max-width:100%;overflow-wrap:anywhere}
   .gallery-item img{max-height:520px}
 }
+
+@import './mobile-fixes.css';
