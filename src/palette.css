@@ -109,7 +109,6 @@ body,.site{background:var(--cream);color:var(--ink);overflow-x:hidden}
 .footer{background:#b9c1ba!important;color:#fffdf9!important;border-top:1px solid rgba(255,253,249,.25)}
 .footer .monogram{color:#fffdf9!important}
 
-/* Movimiento editorial sutil: la página se siente viva sin parecer una plantilla. */
 .hero-image{animation:heroKenBurns 16s ease-in-out infinite alternate}
 .welcome-photo img,.gallery-item img,.place img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter 1.2s ease}
 .welcome-photo:hover img,.gallery-item:hover img,.place:hover img{transform:scale(1.025)}
@@ -151,3 +150,42 @@ body,.site{background:var(--cream);color:var(--ink);overflow-x:hidden}
   .cover-card,.hero-image{animation:none}
   .welcome-photo img,.gallery-item img,.place img,.gallery-item,.text-button,.line-link{transition:none}
 }
+
+/* SOBRE DE ENTRADA · editorial romántico, cálido y físico */
+.cover-screen{padding:28px 18px;background:radial-gradient(circle at 50% 38%,#fffdf9 0,#f8eee4 58%,#ead8cd 100%)}
+.cover-card{width:min(760px,92vw);min-height:520px;height:min(500px,68svh);padding:0;display:block;position:relative;overflow:visible;background:linear-gradient(145deg,#e7c4bd,#d9aaa5);border:1px solid rgba(195,155,88,.7);border-radius:3px;box-shadow:0 36px 90px rgba(91,70,57,.18);animation:envelopeFloat 7s ease-in-out infinite;transform-style:preserve-3d}
+.cover-card:before{content:'';position:absolute;inset:12px;border:1px solid rgba(255,253,249,.55);z-index:1;pointer-events:none}
+.cover-card:after{content:'';position:absolute;left:0;right:0;top:0;height:58%;background:linear-gradient(135deg,rgba(255,253,249,.16),transparent 55%),#e3bbb5;clip-path:polygon(0 0,100% 0,50% 72%);border-bottom:1px solid rgba(195,155,88,.58);transform-origin:50% 0;z-index:5;pointer-events:none;filter:drop-shadow(0 8px 7px rgba(91,70,57,.08))}
+.cover-card .eyebrow,.cover-card .monogram,.cover-card .cover-small,.cover-card h1,.cover-card .fine-line,.cover-card .cover-date,.cover-card .cover-message,.cover-card .text-button{position:relative;z-index:7}
+.cover-card .eyebrow{padding-top:66px;margin-bottom:8px;color:#fffaf3}
+.cover-card .monogram{font-size:28px;color:#fffaf3;text-shadow:0 1px 1px rgba(91,70,57,.12)}
+.cover-small{color:#fffaf3!important;margin:15px 0 8px!important;font-size:9px!important;letter-spacing:.36em!important}
+.cover-card h1{font-size:clamp(44px,7vw,78px);line-height:.88;color:#4b4541;text-shadow:0 1px rgba(255,255,255,.25)}
+.cover-card h1 i{color:#fffaf3!important}
+.cover-card .fine-line{margin:18px auto 12px;background:#fffaf3;width:82px}
+.cover-card .fine-line:before,.cover-card .fine-line:after{color:#fffaf3}
+.cover-card .cover-date{color:#fffaf3;font-size:12px}
+.cover-card .cover-message{max-width:430px;margin:13px auto 0;color:#5f5550;font-size:18px;line-height:1.25}
+.cover-card .text-button{margin-top:18px;color:#fffaf3;border:1px solid rgba(255,253,249,.72);padding:11px 20px;border-radius:999px;background:rgba(195,155,88,.18);letter-spacing:.12em;font-size:9px;text-transform:uppercase;box-shadow:0 8px 20px rgba(91,70,57,.1)}
+.cover-card .text-button:hover{letter-spacing:.14em;transform:translateY(-2px);background:rgba(255,253,249,.18)}
+.cover-card .text-button span{display:none}
+.cover-card .cover-message:after{content:'';position:absolute;left:12%;right:12%;bottom:-95px;height:90px;background:#f7efe5;clip-path:polygon(0 0,50% 42%,100% 0,100% 100%,0 100%);z-index:-1;opacity:.98;box-shadow:0 12px 24px rgba(91,70,57,.08)}
+.cover-screen .botanical-left{left:4%;top:14%;color:rgba(169,178,170,.25);font-size:120px;z-index:0}
+.cover-screen .botanical-right{right:4%;bottom:12%;color:rgba(169,178,170,.25);font-size:120px;z-index:0}
+.cover-screen:global{overflow:hidden}
+
+@keyframes envelopeFloat{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-6px) rotateX(.35deg)}}
+
+@media (max-width:700px){
+  .cover-screen{padding:18px 12px}
+  .cover-card{width:min(94vw,540px);height:min(420px,61svh);min-height:390px}
+  .cover-card .eyebrow{padding-top:48px;font-size:8px}
+  .cover-card .monogram{font-size:24px}
+  .cover-small{margin-top:10px!important;font-size:8px!important}
+  .cover-card h1{font-size:clamp(38px,12vw,58px)}
+  .cover-card .cover-message{max-width:78%;font-size:16px}
+  .cover-card .text-button{margin-top:14px;padding:10px 16px;font-size:8px}
+  .cover-screen .botanical-left,.cover-screen .botanical-right{font-size:78px}
+}
+
+@media (prefers-reduced-motion:reduce){.cover-card{animation:none}}
