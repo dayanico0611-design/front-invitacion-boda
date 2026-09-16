@@ -14,6 +14,7 @@ const FAQS = [
 function App() {
   const { couple, date, hero, envelope, intro, gallery, program, locations, gifts, rsvp, footer } = data
   const [open, setOpen] = useState(false)
+  const [opening, setOpening] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [remaining, setRemaining] = useState(getRemainingTime(date.iso))
   const [form, setForm] = useState({ nombre: '', attendance: '', guests: 1, note: '' })
@@ -42,9 +43,14 @@ function App() {
   }
 
   const openInvitation = () => {
-    setOpen(true)
+    if (opening || open) return
+    setOpening(true)
     if (!playing) { audio.current?.start(); setPlaying(true) }
-    setTimeout(() => document.getElementById('inicio')?.scrollIntoView({ behavior: 'smooth' }), 350)
+    window.setTimeout(() => {
+      setOpen(true)
+      setOpening(false)
+      window.setTimeout(() => document.getElementById('inicio')?.scrollIntoView({ behavior: 'smooth' }), 80)
+    }, 1250)
   }
 
   const change = (event) => {
@@ -98,8 +104,31 @@ function App() {
     if (!token) return <Access message="Este enlace requiere un acceso de invitado." />
   }
 
-  return <main className={open ? 'site is-open' : 'site'}>
-    {!open ? <section className="cover-screen"><div className="cover-botanical botanical-left">❦</div><div className="cover-botanical botanical-right">❧</div><div className="cover-card"><p className="eyebrow">{envelope.overline}</p><span className="monogram">{couple.shortMark}</span><p className="cover-small">NOS CASAMOS</p><h1>{couple.bride}<i>&amp;</i>{couple.groom}</h1><div className="fine-line"/><p className="cover-date">{date.display}</p><p className="cover-message">{envelope.message}</p><button className="text-button" onClick={openInvitation}>Entrar a la invitación <span>↓</span></button></div></section> : <>
+  return <main className={open ? 'site is-open' : `site cover-open ${opening ? 'is-opening' : ''}`}>
+    {!open ? <section className="cover-screen">
+      <div className="cover-botanical botanical-left">❦</div>
+      <div className="cover-botanical botanical-right">❧</div>
+      <div className="envelope-scene">
+        <div className="envelope" aria-label="Invitación de boda">
+          <div className="envelope-back" />
+          <div className="envelope-pocket" />
+          <article className="invitation-card">
+            <p className="eyebrow">{envelope.overline}</p>
+            <span className="monogram">{couple.shortMark}</span>
+            <p className="cover-small">NOS CASAMOS</p>
+            <h1>{couple.bride}<i>&amp;</i>{couple.groom}</h1>
+            <div className="fine-line" />
+            <p className="cover-date">{date.display}</p>
+            <p className="cover-message">{envelope.message}</p>
+          </article>
+          <div className="envelope-flap" />
+          <button className="wax-seal" onClick={openInvitation} disabled={opening} aria-label="Abrir invitación">
+            <span>{couple.shortMark}</span>
+          </button>
+        </div>
+        <p className="envelope-hint">Toca el sello para abrir</p>
+      </div>
+    </section> : <>
       <header className="floating-nav"><a href="#inicio" className="nav-mark">D&amp;N</a><nav><a href="#historia">Historia</a><a href="#fecha">Fecha</a><a href="#dia">El día</a><a href="#dress">Dress code</a><a href="#faq">FAQ</a><a href="#rsvp">Confirmar</a></nav><button className="music-button" onClick={toggleMusic} aria-label="Activar o pausar música"><span className={playing ? 'music-bars playing' : 'music-bars'}><i/><i/><i/></span>{playing ? 'Pausa' : 'Música'}</button></header>
       <section className="hero" id="inicio"><div className="hero-image" style={{ backgroundImage: `url("${hero.image}")` }}/><div className="hero-wash"/><div className="hero-frame"/><div className="hero-content"><p className="eyebrow">{hero.overline}</p><span className="monogram light">{couple.shortMark}</span><h2>{couple.bride}<i>&amp;</i>{couple.groom}</h2><div className="hero-rule"/><p>{hero.location}</p></div><div className="scroll-note">desliza <span>↓</span></div></section>
       <section className="welcome" id="historia"><div className="welcome-copy"><p className="eyebrow">{intro.overline}</p><h2>{intro.headline}<em>{intro.headlineEmphasis}</em></h2><p>{intro.text}</p><span className="signature">D &amp; N</span></div><div className="welcome-photo"><img src={gallery[1]?.image || hero.image} alt="Dayana y Nicolás"/><span className="photo-caption">un día para recordar</span></div></section>
