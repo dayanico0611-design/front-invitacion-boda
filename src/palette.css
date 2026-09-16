@@ -15,7 +15,7 @@
 }
 body,.site{background:var(--cream);color:var(--ink)}
 .eyebrow{color:var(--gold)}
-.monogram{color:var(--bordeaux,#b9787d)}
+.monogram{color:#b9787d}
 .monogram.light{color:#fffdf9}
 .cover-screen{background:radial-gradient(circle at 50% 42%,#fffaf3 0,#f6eee2 62%,#eedfd2 100%)}
 .cover-screen:before,.cover-screen:after{border-color:rgba(195,155,88,.24)}
@@ -39,22 +39,38 @@ body,.site{background:var(--cream);color:var(--ink)}
 .count-grid div{border-color:rgba(195,155,88,.22)}
 .count-grid strong{color:#b9787d}
 .day-section{background:#fffdf9}
-.timeline{border-color:rgba(195,155,88,.35)}
-.timeline article{border-color:rgba(195,155,88,.25)}
-.timeline small{color:#b9787d}
-.timeline-dot{border-color:var(--gold)}
-.timeline article.is-active .timeline-dot{background:#b9787d;border-color:#b9787d}
+.centered-timeline{width:min(820px,100%);margin:0 auto;border-top:1px solid rgba(195,155,88,.35)}
+.centered-timeline article{grid-template-columns:64px minmax(0,1fr) 14px;gap:22px;padding:48px 0;text-align:left;opacity:1;border-color:rgba(195,155,88,.25);transform:none!important}
+.centered-timeline article:hover{background:linear-gradient(90deg,rgba(241,227,213,.45),transparent);padding-left:18px;padding-right:18px}
+.centered-timeline .timeline-number{color:#b9787d}
+.centered-timeline .timeline-dot{border-color:var(--gold)}
 .places-section{background:var(--cream2)}
 .place{background:rgba(255,253,249,.88);border-color:rgba(195,155,88,.32)}
 .place-number{color:#b9787d}
-.dress-section{background:#f4d8c1!important;color:var(--ink)!important}
+.dress-section{background:#f4d8c1!important;color:var(--ink)!important;text-align:center}
 .dress-section .dress-art{color:#b9787d!important}
 .dress-section .eyebrow{color:#a67a4a!important}
-.dress-note{color:#6d625c!important}
-.faq-section{background:#fffdf9;color:var(--ink)}
-.faq-heading h2 em{color:#b9787d}
-.faq-item{border-color:rgba(195,155,88,.3)!important}
-.faq-item summary i{color:#b9787d}
+.dress-section>p:not(.eyebrow){margin-left:auto;margin-right:auto;max-width:720px}
+.dress-examples{width:min(760px,92vw);margin:38px auto 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;text-align:left}
+.dress-examples>div{padding:26px 28px;background:rgba(255,253,249,.56);border:1px solid rgba(195,155,88,.3)}
+.dress-examples span{display:block;margin-bottom:10px;font:12px 'Playfair Display',serif;color:#b9787d}
+.dress-examples strong{display:block;margin-bottom:8px;font:500 28px 'Playfair Display',serif}
+.dress-examples p{margin:0;font:16px/1.5 'Cormorant Garamond',serif;color:#6d625c}
+.dress-note{margin-top:30px!important;font:italic 18px/1.5 'Cormorant Garamond',serif!important;color:#6d625c!important}
+.faq-section{width:100%;padding:150px max(6vw,30px);display:grid;grid-template-columns:minmax(260px,.7fr) minmax(0,1.3fr);gap:80px;background:#fffdf9;color:var(--ink)}
+.faq-heading{align-self:start;position:sticky;top:110px}
+.faq-heading h2{margin:0 0 22px;font:500 clamp(55px,7vw,88px)/.84 'Playfair Display',serif;letter-spacing:-.05em}
+.faq-heading h2 em{color:#b9787d;font-style:italic}
+.faq-heading>p:last-child{max-width:340px;margin:0;font:18px/1.55 'Cormorant Garamond',serif;color:var(--ink2)}
+.faq-list{border-top:1px solid rgba(195,155,88,.3)}
+.faq-item{border-bottom:1px solid rgba(195,155,88,.3)!important;padding:0!important;background:transparent!important}
+.faq-item summary{display:grid;grid-template-columns:44px 1fr 28px;gap:18px;align-items:center;padding:25px 0;cursor:pointer;list-style:none}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary span{font:11px 'Playfair Display',serif;color:#b9787d}
+.faq-item summary strong{font:500 25px/1.2 'Playfair Display',serif}
+.faq-item summary i{font:25px 'Cormorant Garamond',serif;color:#b9787d;font-style:normal;text-align:right;transition:transform .25s}
+.faq-item[open] summary i{transform:rotate(45deg)}
+.faq-item>p{max-width:760px;margin:0 46px 26px 62px;font:17px/1.6 'Cormorant Garamond',serif;color:var(--ink2)}
 .gift-section{background:var(--cream)}
 .gift-card{background:#fffdf9!important;border-color:rgba(195,155,88,.35)!important}
 .gift-symbol{color:#a9b2aa!important}
@@ -64,4 +80,7 @@ body,.site{background:var(--cream);color:var(--ink)}
 @media (max-width:900px){
   .floating-nav nav{gap:0}
   .floating-nav nav a{padding:8px 7px;font-size:8px}
+  .dress-examples{grid-template-columns:1fr}
+  .faq-section{grid-template-columns:1fr;gap:50px;padding:110px 7vw}
+  .faq-heading{position:static}
 }
