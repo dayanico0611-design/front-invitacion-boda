@@ -1,0 +1,474 @@
+/* V3 · invitación editorial continua
+   Inspirada en invitaciones impresas verticales: papel, fotografía, aire y apariciones suaves.
+   No reemplaza la paleta definida; solo la suaviza y organiza en una experiencia de scroll única. */
+
+:root{
+  --paper:#fffdf9;
+  --paper-soft:#f8efe6;
+  --paper-warm:#f3e5d8;
+  --sage-soft:#b7c0ba;
+  --blue-soft:#aebdca;
+  --rose-soft:#d8b1aa;
+  --gold-soft:#c8a76b;
+  --editorial-shadow:0 24px 70px rgba(91,70,57,.10);
+}
+
+.site.is-open{
+  background:
+    radial-gradient(circle at 10% 8%,rgba(174,189,202,.20),transparent 28%),
+    radial-gradient(circle at 92% 72%,rgba(216,177,170,.18),transparent 30%),
+    linear-gradient(180deg,#f2e9df 0%,#eee4da 50%,#f3e9df 100%);
+  color:var(--ink);
+}
+
+/* Una sola superficie de lectura: los bloques dejan de sentirse como pantallas separadas. */
+.site.is-open > section:not(.hero){
+  width:min(1040px,calc(100% - 28px));
+  margin:0 auto;
+  border:1px solid rgba(195,155,88,.20);
+  border-radius:8px;
+  background:rgba(255,253,249,.94);
+  box-shadow:var(--editorial-shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.site.is-open > section:not(.hero)::before{
+  content:'';
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(195,155,88,.10);
+  pointer-events:none;
+  z-index:0;
+}
+
+.site.is-open > section:not(.hero) > *{
+  position:relative;
+  z-index:1;
+}
+
+.site.is-open .hero{
+  width:min(1180px,calc(100% - 28px));
+  min-height:min(860px,92svh);
+  margin:18px auto 30px;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 30px 90px rgba(60,53,48,.15);
+}
+
+.site.is-open .hero-frame{
+  inset:24px;
+  border-color:rgba(255,253,249,.55);
+}
+
+.site.is-open .hero-content{
+  max-width:760px;
+}
+
+.site.is-open .hero-content h2{
+  font-size:clamp(64px,9vw,118px);
+  letter-spacing:-.07em;
+}
+
+.site.is-open .hero .scroll-note{
+  bottom:28px;
+}
+
+/* Ritmo editorial */
+.site.is-open .welcome,
+.site.is-open .date-section,
+.site.is-open .countdown,
+.site.is-open .day-section,
+.site.is-open .places-section,
+.site.is-open .dress-section,
+.site.is-open .gallery-section,
+.site.is-open .faq-section,
+.site.is-open .gift-section,
+.site.is-open .rsvp-section{
+  min-height:0;
+}
+
+.site.is-open .welcome{
+  padding:clamp(72px,9vw,128px) clamp(22px,6vw,80px);
+  background:var(--paper);
+}
+
+.site.is-open .welcome-copy{
+  max-width:560px;
+}
+
+.site.is-open .welcome-copy h2,
+.site.is-open .section-intro h2,
+.site.is-open .places-heading h2,
+.site.is-open .gallery-title h2,
+.site.is-open .gift-copy h2,
+.site.is-open .rsvp-intro h2{
+  letter-spacing:-.055em;
+}
+
+.site.is-open .welcome-photo{
+  border-radius:3px;
+  box-shadow:0 18px 50px rgba(91,70,57,.14);
+}
+
+.site.is-open .welcome-photo img{
+  filter:saturate(.92) contrast(.98);
+}
+
+.site.is-open .date-section{
+  padding:clamp(78px,10vw,140px) clamp(22px,6vw,80px)!important;
+  background:
+    linear-gradient(135deg,rgba(174,189,202,.24),transparent 42%),
+    var(--paper-soft)!important;
+  color:var(--ink)!important;
+}
+
+.site.is-open .date-main .eyebrow,
+.site.is-open .date-detail span{
+  color:var(--gold)!important;
+}
+
+.site.is-open .date-main h2{
+  color:var(--ink);
+  font-size:clamp(50px,8vw,92px);
+  max-width:850px;
+}
+
+.site.is-open .date-description,
+.site.is-open .date-detail p{
+  color:var(--ink2)!important;
+}
+
+.site.is-open .date-detail{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-top:40px!important;
+}
+
+.site.is-open .date-detail p{
+  margin:0;
+  padding:24px;
+  border:1px solid rgba(195,155,88,.20);
+  background:rgba(255,253,249,.62);
+}
+
+.site.is-open .countdown{
+  padding:clamp(72px,9vw,118px) clamp(22px,6vw,80px);
+  background:#fffdf9!important;
+  text-align:center;
+}
+
+.site.is-open .countdown h2{
+  max-width:680px;
+  margin:0 auto 46px;
+  font-size:clamp(36px,5vw,60px);
+  letter-spacing:-.04em;
+}
+
+.site.is-open .count-grid{
+  max-width:760px!important;
+}
+
+.site.is-open .day-section{
+  padding:clamp(76px,9vw,128px) clamp(22px,5vw,70px);
+  background:
+    radial-gradient(circle at 50% 0,rgba(174,189,202,.18),transparent 35%),
+    var(--paper)!important;
+}
+
+.site.is-open .centered-timeline{
+  max-width:760px;
+}
+
+.site.is-open .centered-timeline article{
+  padding:42px 0;
+}
+
+.site.is-open .places-section{
+  padding:clamp(76px,9vw,128px) clamp(22px,5vw,70px);
+  background:var(--paper-warm)!important;
+}
+
+.site.is-open .places-heading{
+  margin-bottom:42px;
+}
+
+.site.is-open .place{
+  background:rgba(255,253,249,.76);
+  box-shadow:none;
+  border-radius:4px;
+  margin-bottom:16px;
+  padding:34px 28px;
+}
+
+.site.is-open .place:last-child{
+  margin-bottom:0;
+}
+
+.site.is-open .dress-section{
+  padding:clamp(76px,9vw,128px) clamp(22px,5vw,70px);
+  background:
+    radial-gradient(circle at 15% 20%,rgba(216,177,170,.18),transparent 30%),
+    var(--paper)!important;
+}
+
+.site.is-open .dress-art{
+  opacity:.55;
+}
+
+.site.is-open .dress-examples{
+  max-width:780px;
+}
+
+.site.is-open .gallery-section{
+  padding:clamp(76px,9vw,128px) clamp(14px,3vw,42px);
+  background:var(--paper)!important;
+}
+
+.site.is-open .gallery-title{
+  padding:0 16px;
+  margin-bottom:46px;
+}
+
+.site.is-open .editorial-gallery{
+  max-width:920px;
+  margin-inline:auto;
+  gap:18px;
+}
+
+.site.is-open .gallery-item{
+  border-radius:3px;
+  box-shadow:0 14px 40px rgba(91,70,57,.10);
+}
+
+.site.is-open .gallery-item img{
+  filter:saturate(.94);
+}
+
+.site.is-open .faq-section{
+  padding:clamp(76px,9vw,128px) clamp(22px,6vw,70px);
+  width:min(1040px,calc(100% - 28px))!important;
+  background:var(--paper)!important;
+}
+
+.site.is-open .faq-heading{
+  top:90px;
+}
+
+.site.is-open .gift-section{
+  padding:clamp(76px,9vw,128px) clamp(22px,6vw,70px);
+  background:
+    linear-gradient(145deg,rgba(174,189,202,.18),transparent 45%),
+    var(--paper-soft)!important;
+}
+
+.site.is-open .gift-card{
+  border-radius:4px;
+  box-shadow:0 18px 50px rgba(91,70,57,.09);
+}
+
+.site.is-open .rsvp-section{
+  padding:clamp(76px,9vw,128px) clamp(22px,6vw,70px);
+  background:
+    radial-gradient(circle at 90% 20%,rgba(216,177,170,.18),transparent 26%),
+    var(--paper)!important;
+  color:var(--ink)!important;
+}
+
+.site.is-open .rsvp-section form{
+  background:rgba(255,253,249,.76);
+  border:1px solid rgba(195,155,88,.20);
+  padding:clamp(22px,4vw,42px);
+}
+
+.site.is-open .rsvp-section form input,
+.site.is-open .rsvp-section form select,
+.site.is-open .rsvp-section form textarea{
+  background:#fffdf9!important;
+  border-color:rgba(75,69,65,.16)!important;
+}
+
+.site.is-open .rsvp-section .secondary-button{
+  color:var(--ink)!important;
+  border-color:rgba(75,69,65,.24)!important;
+}
+
+.site.is-open .footer{
+  width:min(1040px,calc(100% - 28px));
+  margin:0 auto 28px;
+  border-radius:8px;
+  background:var(--sage-soft)!important;
+  color:#fffdf9!important;
+  box-shadow:var(--editorial-shadow);
+}
+
+/* Pequeños detalles de invitación impresa */
+.site.is-open .eyebrow{
+  letter-spacing:.24em;
+}
+
+.site.is-open .line-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(195,155,88,.48);
+}
+
+.site.is-open .timeline-number{
+  box-shadow:0 5px 14px rgba(91,70,57,.06);
+}
+
+.site.is-open .faq-item summary,
+.site.is-open .dress-examples>div,
+.site.is-open .date-detail p{
+  transition:background .45s ease,transform .45s ease,border-color .45s ease;
+}
+
+.site.is-open .faq-item summary:hover{
+  background:rgba(241,227,213,.28);
+}
+
+/* Aparición progresiva: cada bloque entra cuando el usuario llega a él. */
+.site.is-open .reveal-section.js-reveal > *{
+  opacity:0;
+  transform:translateY(28px);
+  transition:
+    opacity .75s ease,
+    transform .85s cubic-bezier(.2,.75,.2,1);
+  will-change:opacity,transform;
+}
+
+.site.is-open .reveal-section.js-reveal.is-revealed > *{
+  opacity:1;
+  transform:none;
+}
+
+.site.is-open .reveal-section.js-reveal.is-revealed > *:nth-child(2){transition-delay:.08s}
+.site.is-open .reveal-section.js-reveal.is-revealed > *:nth-child(3){transition-delay:.16s}
+.site.is-open .reveal-section.js-reveal.is-revealed > *:nth-child(4){transition-delay:.24s}
+.site.is-open .reveal-section.js-reveal.is-revealed > *:nth-child(5){transition-delay:.32s}
+
+.site.is-open .reveal-section.js-reveal .timeline article,
+.site.is-open .reveal-section.js-reveal .place,
+.site.is-open .reveal-section.js-reveal .gallery-item,
+.site.is-open .reveal-section.js-reveal .faq-item,
+.site.is-open .reveal-section.js-reveal .dress-examples>div{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .7s ease,transform .75s cubic-bezier(.2,.75,.2,1);
+}
+
+.site.is-open .reveal-section.js-reveal.is-revealed .timeline article,
+.site.is-open .reveal-section.js-reveal.is-revealed .place,
+.site.is-open .reveal-section.js-reveal.is-revealed .gallery-item,
+.site.is-open .reveal-section.js-reveal.is-revealed .faq-item,
+.site.is-open .reveal-section.js-reveal.is-revealed .dress-examples>div{
+  opacity:1;
+  transform:none;
+}
+
+.site.is-open .reveal-section.js-reveal.is-revealed .timeline article:nth-child(2),
+.site.is-open .reveal-section.js-reveal.is-revealed .place:nth-child(2),
+.site.is-open .reveal-section.js-reveal.is-revealed .gallery-item:nth-child(2),
+.site.is-open .reveal-section.js-reveal.is-revealed .faq-item:nth-child(2),
+.site.is-open .reveal-section.js-reveal.is-revealed .dress-examples>div:nth-child(2){transition-delay:.10s}
+
+.site.is-open .reveal-section.js-reveal.is-revealed .timeline article:nth-child(3),
+.site.is-open .reveal-section.js-reveal.is-revealed .place:nth-child(3),
+.site.is-open .reveal-section.js-reveal.is-revealed .gallery-item:nth-child(3),
+.site.is-open .reveal-section.js-reveal.is-revealed .faq-item:nth-child(3){transition-delay:.20s}
+
+.site.is-open .reveal-section.js-reveal.is-revealed .timeline article:nth-child(4),
+.site.is-open .reveal-section.js-reveal.is-revealed .gallery-item:nth-child(4),
+.site.is-open .reveal-section.js-reveal.is-revealed .faq-item:nth-child(4){transition-delay:.30s}
+
+.site.is-open .reveal-section.js-reveal.is-revealed .timeline article:nth-child(5),
+.site.is-open .reveal-section.js-reveal.is-revealed .gallery-item:nth-child(5),
+.site.is-open .reveal-section.js-reveal.is-revealed .faq-item:nth-child(5){transition-delay:.40s}
+
+.site.is-open .reveal-section.js-reveal.is-revealed .timeline article:nth-child(6),
+.site.is-open .reveal-section.js-reveal.is-revealed .gallery-item:nth-child(6){transition-delay:.50s}
+
+.site.is-open .reveal-section.js-reveal.is-revealed .gallery-item:nth-child(7){transition-delay:.60s}
+
+/* Barra de progreso muy discreta para reforzar que todo es un solo recorrido. */
+.scroll-progress{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:2px;
+  z-index:1200;
+  pointer-events:none;
+  background:rgba(255,253,249,.28);
+}
+
+.scroll-progress span{
+  display:block;
+  width:var(--scroll-progress,0%);
+  height:100%;
+  background:var(--gold);
+  transform-origin:left center;
+  transition:width .12s linear;
+}
+
+@media (max-width:700px){
+  .site.is-open > section:not(.hero),
+  .site.is-open .hero,
+  .site.is-open .footer{
+    width:calc(100% - 16px);
+  }
+
+  .site.is-open .hero{
+    min-height:82svh;
+    margin-top:8px;
+    margin-bottom:16px;
+    border-radius:7px;
+  }
+
+  .site.is-open .hero-frame{
+    inset:12px;
+  }
+
+  .site.is-open .date-detail{
+    grid-template-columns:1fr!important;
+  }
+
+  .site.is-open .date-detail p{
+    padding:20px;
+  }
+
+  .site.is-open .faq-section{
+    width:calc(100% - 16px)!important;
+  }
+
+  .site.is-open .rsvp-section form{
+    padding:20px 16px;
+  }
+
+  .site.is-open .footer{
+    margin-bottom:86px;
+  }
+
+  .site.is-open .reveal-section.js-reveal > *{
+    transform:translateY(20px);
+    transition-duration:.65s;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .site.is-open .reveal-section.js-reveal > *,
+  .site.is-open .reveal-section.js-reveal .timeline article,
+  .site.is-open .reveal-section.js-reveal .place,
+  .site.is-open .reveal-section.js-reveal .gallery-item,
+  .site.is-open .reveal-section.js-reveal .faq-item,
+  .site.is-open .reveal-section.js-reveal .dress-examples>div{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
+
+  .scroll-progress span{transition:none}
+}
