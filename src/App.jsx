@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import './palette.css'
+import './scroll-editorial.css'
 import data from './invitationData.json'
 
 const FAQS = [
@@ -36,6 +37,49 @@ function App() {
     audio.current = createRomanticMusic()
     return () => audio.current?.stop?.()
   }, [])
+
+  useEffect(() => {
+    if (!open) return
+
+    const sections = [...document.querySelectorAll('.site.is-open > section')]
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const revealSections = sections.filter((section) => !section.classList.contains('hero'))
+
+    revealSections.forEach((section, index) => {
+      section.classList.add('reveal-section', 'js-reveal')
+      if (reduceMotion || index === 0) section.classList.add('is-revealed')
+    })
+
+    const observer = reduceMotion ? null : new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed')
+          observer?.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' })
+
+    revealSections.forEach((section) => {
+      if (!section.classList.contains('is-revealed')) observer?.observe(section)
+    })
+
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      const progress = max > 0 ? (window.scrollY / max) * 100 : 0
+      document.documentElement.style.setProperty('--scroll-progress', progress + '%')
+    }
+
+    updateProgress()
+    window.addEventListener('scroll', updateProgress, { passive: true })
+    window.addEventListener('resize', updateProgress)
+
+    return () => {
+      observer?.disconnect()
+      window.removeEventListener('scroll', updateProgress)
+      window.removeEventListener('resize', updateProgress)
+      document.documentElement.style.removeProperty('--scroll-progress')
+    }
+  }, [open])
 
   const toggleMusic = () => {
     if (!audio.current) return
@@ -129,7 +173,7 @@ function App() {
         <p className="envelope-hint">Toca el sello para abrir</p>
       </div>
     </section> : <>
-      <header className="floating-nav"><a href="#inicio" className="nav-mark">D&amp;N</a><nav><a href="#historia">Historia</a><a href="#fecha">Fecha</a><a href="#dia">El día</a><a href="#dress">Dress code</a><a href="#faq">FAQ</a><a href="#rsvp">Confirmar</a></nav><button className="music-button" onClick={toggleMusic} aria-label="Activar o pausar música"><span className={playing ? 'music-bars playing' : 'music-bars'}><i/><i/><i/></span>{playing ? 'Pausa' : 'Música'}</button></header>
+      <header className="floating-nav"><a href="#inicio" className="nav-mark">D&amp;N</a><nav><a href="#historia">Historia</a><a href="#fecha">Fecha</a><a href="#dia">El día</a><a href="#dress">Dress code</a><a href="#faq">FAQ</a><a href="#rsvp">Confirmar</a></nav><button className="music-button" onClick={toggleMusic} aria-label="Activar o pausar música"><span className={playing ? 'music-bars playing' : 'music-bars'}><i/><i/><i/></span>{playing ? 'Pausa' : 'Música'}</button></header><div className="scroll-progress" aria-hidden="true"><span /></div>
       <section className="hero" id="inicio"><div className="hero-image" style={{ backgroundImage: `url("${hero.image}")` }}/><div className="hero-wash"/><div className="hero-frame"/><div className="hero-content"><p className="eyebrow">{hero.overline}</p><span className="monogram light">{couple.shortMark}</span><h2>{couple.bride}<i>&amp;</i>{couple.groom}</h2><div className="hero-rule"/><p>{hero.location}</p></div><div className="scroll-note">desliza <span>↓</span></div></section>
       <section className="welcome" id="historia"><div className="welcome-copy"><p className="eyebrow">{intro.overline}</p><h2>{intro.headline}<em>{intro.headlineEmphasis}</em></h2><p>{intro.text}</p><span className="signature">D &amp; N</span></div><div className="welcome-photo"><img src={gallery[1]?.image || hero.image} alt="Dayana y Nicolás"/><span className="photo-caption">un día para recordar</span></div></section>
       <section className="date-section" id="fecha"><div className="date-main"><p className="eyebrow">Guarda esta fecha</p><h2>{date.display}</h2><p className="date-description">Queremos celebrar este comienzo junto a las personas que más queremos.</p><a className="line-link" href={data.calendar?.maps} target="_blank" rel="noreferrer">Ver ubicación ↗</a></div><div className="date-detail"><p><span>La ceremonia</span>{locations.church.time}<br/>{locations.church.name}</p><p><span>La celebración</span>{locations.venue.time}<br/>{locations.venue.name}</p></div></section>
