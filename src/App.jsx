@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import data from './invitationData.json'
+import SongSuggestions from './SongSuggestions'
 
 function App() {
   const { couple, date, hero, gallery, program, locations, gifts, rsvp, footer } = data
@@ -239,6 +240,7 @@ function App() {
               <a className="outline-button" href="https://club.noviosparis.cl/home/couple-catalog/21046698" target="_blank" rel="noreferrer">Ver lista <span>→</span></a>
               <div className="rings-divider" aria-hidden="true">♡</div>
             </section>
+            <SongSuggestions />
             <section className="editorial-rsvp" id="confirmacion">
               <img className="rsvp-watercolor" src="./illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
               <h2>Confirmación</h2>

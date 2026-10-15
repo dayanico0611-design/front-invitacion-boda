@@ -863,6 +863,25 @@ body { background: #eee9e0; }
   .editorial-column > footer { padding: 24px 40px; }
 }
 
+.editorial-gift-rsvp > .editorial-playlist { position: relative; padding: 44px clamp(24px, 7vw, 64px); border-block: 1px solid rgba(140,119,84,.16); text-align: center; }
+.playlist-note { display: block; width: 43px; height: 43px; margin: 0 auto 18px; fill: none; stroke: #a1845c; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.editorial-playlist .eyebrow { line-height: 1.7; }
+.editorial-playlist h2 { margin: 0; color: var(--ink); font: 500 clamp(25px, 4vw, 33px)/1.3 'Cormorant Garamond',serif; letter-spacing: .12em; text-transform: uppercase; }
+.playlist-rule { display: block; width: 52px; height: 1px; margin: 24px auto; background: rgba(140,119,84,.5); }
+.playlist-copy { margin: 0 auto 26px; color: var(--soft-ink); font: italic 21px/1.6 'Cormorant Garamond',serif; }
+.playlist-add,.playlist-send { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 18px; width: min(300px,100%); padding: 14px 24px; border: 1px solid transparent; border-radius: 999px; background: #85896e; color: #fffdf8; font: 500 10px/1.4 'DM Sans',sans-serif; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; touch-action: manipulation; }
+.playlist-add span { font-size: 20px; line-height: 1; }
+.playlist-add:hover,.playlist-send:hover { background: #74785e; }
+.playlist-add:focus-visible,.playlist-send:focus-visible { outline: 2px solid #806b43; outline-offset: 4px; }
+.playlist-form { width: min(440px,100%); margin: 28px auto 0; text-align: left; }
+.playlist-form[hidden] { display: none; }
+.playlist-form label { display: grid; gap: 7px; margin: 0 0 16px; color: var(--soft-ink); font: 17px/1.4 'Cormorant Garamond',serif; }
+.playlist-form label > span { display: contents; font-size: 14px; }
+.playlist-form input:not([type="hidden"]) { box-sizing: border-box; width: 100%; min-height: 46px; padding: 11px 13px; border: 1px solid rgba(140,119,84,.36); border-radius: 3px; background: rgba(255,255,255,.4); color: var(--ink); font: 16px/1.4 'Cormorant Garamond',serif; }
+.playlist-form input:focus-visible { outline: 2px solid #a1845c; outline-offset: 2px; }
+.playlist-help { color: var(--soft-ink); font: 12px/1.6 'DM Sans',sans-serif; }
+.playlist-send { display: flex; margin: 20px auto 0; }
+
 /* Navegación móvil: sin el desplazamiento horizontal de la animación de escritorio. */
 @media (max-width: 900px) {
   .floating-nav {
