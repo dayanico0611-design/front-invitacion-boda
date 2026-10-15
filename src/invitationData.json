@@ -29,13 +29,41 @@
     "text": "Después de decir que sí, queremos reunirnos bajo las luces, las flores y el cielo de Chapanay para celebrar el comienzo de nuestra vida juntos."
   },
   "gallery": [
-    { "image": "./fotos/IMG_5400.JPG", "alt": "Dayana y Nicolás en sus primeros años", "caption": "Desde el principio" },
-    { "image": "./fotos/IMG_2387.JPEG", "alt": "Dayana y Nicolás frente al mar", "caption": "Siempre juntos" },
-    { "image": "./fotos/IMG_2450.JPEG", "alt": "Dayana y Nicolás recorriendo la ciudad", "caption": "El mundo nos queda cerca" },
-    { "image": "./fotos/IMG_3604.JPEG", "alt": "Dayana y Nicolás en la nieve", "caption": "Aventura tras aventura" },
-    { "image": "./fotos/IMG_3624.JPG", "alt": "Dayana y Nicolás en un jardín", "caption": "Coleccionando momentos" },
-    { "image": "./fotos/IMG_3615.JPEG", "alt": "Dayana y Nicolás frente a la montaña", "caption": "Donde sea, contigo" },
-    { "image": "./fotos/IMG_2128.JPEG", "alt": "Dayana y Nicolás en su hogar", "caption": "Construyendo nuestro lugar" }
+    {
+      "image": "./fotos/IMG_5400.JPG",
+      "alt": "Dayana y Nicolás en sus primeros años",
+      "caption": "Desde el principio"
+    },
+    {
+      "image": "./fotos/IMG_2387.JPEG",
+      "alt": "Dayana y Nicolás frente al mar",
+      "caption": "Siempre juntos"
+    },
+    {
+      "image": "./fotos/IMG_2450.JPEG",
+      "alt": "Dayana y Nicolás recorriendo la ciudad",
+      "caption": "El mundo nos queda cerca"
+    },
+    {
+      "image": "./fotos/IMG_3604.JPEG",
+      "alt": "Dayana y Nicolás en la nieve",
+      "caption": "Aventura tras aventura"
+    },
+    {
+      "image": "./fotos/IMG_3624.JPG",
+      "alt": "Dayana y Nicolás en un jardín",
+      "caption": "Coleccionando momentos"
+    },
+    {
+      "image": "./fotos/IMG_3615.JPEG",
+      "alt": "Dayana y Nicolás frente a la montaña",
+      "caption": "Donde sea, contigo"
+    },
+    {
+      "image": "./fotos/IMG_2128.JPEG",
+      "alt": "Dayana y Nicolás en su hogar",
+      "caption": "Construyendo nuestro lugar"
+    }
   ],
   "calendar": {
     "title": "Matrimonio Dayana y Nicolás",
@@ -48,21 +76,18 @@
     "description": "Los esperamos a las 17:45 hrs en la parroquia. Luego la celebración continúa en Centro de Eventos Chapanay."
   },
   "program": [
-    { "time": "17:45 hrs", "title": "Ceremonia", "description": "Llegada de invitados a la Parroquia Nuestra Señora de las Mercedes." },
-    { "time": "19:30 hrs", "title": "Recepción de invitados", "description": "Llegada de invitados al Centro de Eventos Chapanay." },
-    { "time": "20:00 hrs", "title": "Cóctel", "description": "Comenzamos la celebración con un cóctel en Chapanay." },
-    { "time": "20:15 hrs", "title": "Llegada de los novios", "description": "Los novios llegan al sector cocktail para compartir con todos." },
-    { "time": "21:00 hrs", "title": "Ingreso al salón", "description": "Invitamos a todos a tomar sus lugares en el salón principal." },
-    { "time": "21:15 hrs", "title": "Ingreso de los novios", "description": "Entrada de los novios al salón principal." },
-    { "time": "21:20 hrs", "title": "Comida", "description": "Nos sentamos a disfrutar juntos de la cena." },
-    { "time": "22:00 hrs", "title": "Discursos", "description": "Durante la cena compartiremos discursos de 3 a 4 personas, con tiempo limitado de 3 a 4 minutos." },
-    { "time": "22:30 hrs", "title": "Corte de torta", "description": "Un momento dulce para celebrar juntos." },
-    { "time": "22:45 hrs", "title": "Fotos por mesa", "description": "Fotos rápidas por mesa para guardar el recuerdo de todos." },
-    { "time": "23:00 hrs", "title": "Vals", "description": "Nuestro primer baile como esposos." },
-    { "time": "23:05 hrs", "title": "Inicio Fiesta", "description": "Se abre la pista. ¡A bailar!" },
-    { "time": "00:00 hrs", "title": "Ramo + regalo", "description": "Ramo normal + entrega del regalo / caja de whiskey." },
-    { "time": "00:30 hrs", "title": "Fiesta con DJ y cotillón", "description": "Se reanuda la fiesta con DJ y cotillón." },
-    { "time": "04:00 hrs", "title": "Término Fiesta", "description": "Cerramos la noche después de celebrar hasta que el cuerpo aguante." }
+    {
+      "time": "17:45 hrs",
+      "title": "Ceremonia en la parroquia",
+      "description": "Acompáñennos en el momento en que, rodeados de las personas que queremos, nos prometamos una vida juntos.",
+      "icon": "church"
+    },
+    {
+      "time": "19:30 hrs",
+      "title": "Recepción en Chapanay",
+      "description": "Desde aquí celebramos juntos con brindis, cena y baile. La fiesta se extenderá hasta las 04:00 hrs.",
+      "icon": "toast"
+    }
   ],
   "locations": {
     "church": {
@@ -87,9 +112,21 @@
     }
   },
   "details": [
-    { "icon": "dress", "title": "Dress code", "text": "Elegante" },
-    { "icon": "moon", "title": "La noche", "text": "Hasta que el cuerpo aguante" },
-    { "icon": "heart", "title": "Con cariño", "text": "Tu presencia es el regalo" }
+    {
+      "icon": "dress",
+      "title": "Dress code",
+      "text": "Elegante"
+    },
+    {
+      "icon": "moon",
+      "title": "La noche",
+      "text": "Hasta que el cuerpo aguante"
+    },
+    {
+      "icon": "heart",
+      "title": "Con cariño",
+      "text": "Tu presencia es el regalo"
+    }
   ],
   "gifts": {
     "title": "Ayúdanos a llegar más lejos",
@@ -97,14 +134,17 @@
     "mark": "D&N",
     "code": "21046698",
     "url": "https://club.noviosparis.cl/search-couple",
-    "description": "Si desean hacernos un regalo, hemos elegido la lista de novios Paris para reunir lo necesario para nuestra nueva vida.",
+    "description": "Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotros podrán encontrar nuestra lista de Novios Paris en el siguiente enlace.",
     "note": "Cada regalo será simbólico y estará destinado a hacer realidad nuestra luna de miel. Gracias por acompañarnos también en este sueño."
   },
   "rsvp": {
     "overline": "Tu lugar en esta noche",
     "title": "¿Nos acompañas?",
-    "description": "Queremos preparar cada detalle sabiendo que vas a estar. Confírmanos tu asistencia y la de quienes te acompañan.",
-    "attendanceOptions": ["¡Sí, ahí estaremos!", "No podremos acompañarlos"],
+    "description": "Por favor confirma tu asistencia antes del 15 de enero de 2027.",
+    "attendanceOptions": [
+      "¡Sí, ahí estaremos!",
+      "No podremos acompañarlos"
+    ],
     "successText": "Recibimos tu confirmación. Nos vemos en Chapanay."
   },
   "footer": "Con amor, Dayana y Nicolás"
