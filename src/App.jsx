@@ -166,8 +166,8 @@ function App() {
       {envelopeVisible && <div className={`opening-cover${envelopeOpening ? ' is-opening' : ''}`}>
         <button className="opening-cover-action" type="button" onClick={openInvitation} disabled={envelopeOpening} aria-label={`Abrir invitación de ${couple.bride} y ${couple.groom}`}>
           <span className="opening-envelope envelope-original" aria-hidden="true">
-            <img className="envelope-original-pocket" src="/illustrations/envelope-original.png" alt="" fetchPriority="high" decoding="sync" />
-            <span className="envelope-original-flap"><img src="/illustrations/envelope-original.png" alt="" fetchPriority="high" decoding="sync" /></span>
+            <img className="envelope-original-pocket" src="./illustrations/envelope-original.png" alt="" fetchPriority="high" decoding="sync" />
+            <span className="envelope-original-flap"><img src="./illustrations/envelope-original.png" alt="" fetchPriority="high" decoding="sync" /></span>
           </span>
           <span className="envelope-hint">Toca para abrir <span>♡</span></span>
         </button>
@@ -184,7 +184,7 @@ function App() {
         <div className="editorial-grid">
           <div className="editorial-column editorial-left">
             <section className="editorial-intro" id="inicio">
-              <img className="intro-floral floral-corner floral-top-left" src="/illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
+              <img className="intro-floral floral-corner floral-top-left" src="./illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
               <p className="eyebrow">Nuestra boda</p>
               <div className="editorial-divider intro-divider"><HandDrawnHeart /></div>
               <h1><span>{couple.bride} <em>&amp;</em></span><span>{couple.groom}</span></h1>
@@ -194,7 +194,7 @@ function App() {
               </div>
               <p className="editorial-story" id="nosotros">Después de muchos años juntos, queremos compartir este gran momento con las personas que más queremos.</p>
               <div className="editorial-divider intro-divider"><HandDrawnHeart /></div>
-              <img className="floral-bouquet intro-bouquet" src="/illustrations/intro-bouquet-watercolor.png" alt="" aria-hidden="true" />
+              <img className="floral-bouquet intro-bouquet" src="./illustrations/intro-bouquet-watercolor.png" alt="" aria-hidden="true" />
             </section>
             <section className="editorial-song" aria-labelledby="song-heading">
               <h2 id="song-heading">Dale play a nuestra canción</h2>
@@ -212,16 +212,16 @@ function App() {
                 return <article className="event-item event-item-with-image" key={item.title}>
                   <span className="event-icon"><TimelineIcon name={index === 0 ? 'ring' : 'toast'}/></span>
                   <div className="event-copy"><h3>{index === 0 ? 'Ceremonia religiosa' : 'Celebración'}</h3><small>{item.time}</small><p className="event-place">{place.name}</p><p>{index === 0 ? 'Maroto 950, Concón' : place.address}</p><div className="event-actions"><a className="panel-button" href={place.maps} target="_blank" rel="noreferrer">Google Maps <span>→</span></a><a className="panel-button panel-button-secondary" href={place.waze} target="_blank" rel="noreferrer">Waze <span>→</span></a></div></div>
-                  <img className="event-watercolor" src={index === 0 ? '/illustrations/church-watercolor-v2.png' : '/illustrations/chapanay-watercolor.png'} alt={index === 0 ? 'La misma ilustración en acuarela de la parroquia' : 'La misma ilustración en acuarela del Centro de Eventos Chapanay'} />
+                  <img className="event-watercolor" src={index === 0 ? './illustrations/church-watercolor-v2.png' : './illustrations/chapanay-watercolor.png'} alt={index === 0 ? 'La misma ilustración en acuarela de la parroquia' : 'La misma ilustración en acuarela del Centro de Eventos Chapanay'} />
                 </article>
               })}</div>
-              <img className="day-bouquet" src="/illustrations/intro-bouquet-watercolor.png" alt="" aria-hidden="true" />
+              <img className="day-bouquet" src="./illustrations/intro-bouquet-watercolor.png" alt="" aria-hidden="true" />
             </section>
 
             <section className="editorial-dress" id="dress">
               <p className="eyebrow">Código de vestimenta</p>
               <h2>Formal / Cóctel</h2>
-              <img className="dress-couple" src="/illustrations/dress-code-couple-pink.png" alt="Ilustración de una pareja con traje negro y vestido rosa formal" />
+              <img className="dress-couple" src="./illustrations/dress-code-couple-pink.png" alt="Ilustración de una pareja con traje negro y vestido rosa formal" />
               <p className="dress-note">Tu mejor versión,<br/>siempre es suficiente</p>
               <div className="editorial-divider dress-divider"><HandDrawnHeart /></div>
               <p className="dress-color-note">Para que la novia brille, les pedimos evitar el blanco, el plateado y el beige. ¡Gracias por ayudarnos a cuidar ese detalle! 🤍</p>
@@ -240,7 +240,7 @@ function App() {
               <div className="rings-divider" aria-hidden="true">♡</div>
             </section>
             <section className="editorial-rsvp" id="confirmacion">
-              <img className="rsvp-watercolor" src="/illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
+              <img className="rsvp-watercolor" src="./illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
               <h2>Confirmación</h2>
               <div className="editorial-divider"><HandDrawnHeart /></div>
               <p className="rsvp-copy">Por favor confirma tu asistencia<br/>antes del 10 de enero de 2027.</p>
@@ -262,9 +262,9 @@ function App() {
             </section>
 
             <figure className="editorial-photo">
-              <img className="couple-photo" src="/fotos/IMG_2387.JPEG" alt="Dayana y Nicolás abrazados frente al mar" loading="lazy" />
+              <img className="couple-photo" src="./fotos/IMG_2387.JPEG" alt="Dayana y Nicolás abrazados frente al mar" loading="lazy" />
               <figcaption>Nos encantaría<br/><em>celebrar contigo</em><span>♡</span></figcaption>
-              <img className="floral-photo-corner" src="/illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
+              <img className="floral-photo-corner" src="./illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
             </figure>
             <section className="editorial-faq" id="contacto">
               <div className="contact-divider"><HandDrawnHeart /></div>
@@ -275,7 +275,7 @@ function App() {
                 <a className="outline-button" href="https://wa.me/56984357593" target="_blank" rel="noreferrer"><WhatsAppIcon /> Dayana <span>→</span></a>
                 <a className="outline-button" href="https://wa.me/56994411003" target="_blank" rel="noreferrer"><WhatsAppIcon /> Nicolás <span>→</span></a>
               </div>
-              <img className="contact-watercolor" src="/illustrations/intro-bouquet-watercolor.png" alt="" aria-hidden="true" />
+              <img className="contact-watercolor" src="./illustrations/intro-bouquet-watercolor.png" alt="" aria-hidden="true" />
             </section>
             <footer className="editorial-footer"><span className="footer-mark">{couple.shortMark}</span><p>{footer}</p><small>{date.display}</small></footer>
           </div>
@@ -312,7 +312,7 @@ function WeddingSongPlayer() {
   }
 
   return <div className="song-player" aria-label="Reproductor de nuestra canción">
-    <audio ref={audioRef} src="/audio/perfect.mp3" preload="metadata" loop={repeat} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)} onLoadedMetadata={(event) => setDuration(event.currentTarget.duration || 0)} onEnded={() => setPlaying(false)} />
+    <audio ref={audioRef} src="./audio/perfect.mp3" preload="metadata" loop={repeat} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)} onLoadedMetadata={(event) => setDuration(event.currentTarget.duration || 0)} onEnded={() => setPlaying(false)} />
     <input className="song-progress" type="range" min="0" max={duration || 1} step="0.1" value={Math.min(currentTime, duration || 1)} onChange={(event) => seekTo(event.target.value)} style={{ '--song-progress': `${duration ? (currentTime / duration) * 100 : 0}%` }} aria-label="Avance de la canción" aria-valuetext={`${formatSongTime(currentTime)} de ${formatSongTime(duration)}`} />
     <div className="song-controls">
       <button type="button" className="song-control song-skip" onClick={() => seekBy(-10)} aria-label="Retroceder 10 segundos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 3 12l8 7V5Zm10 0-8 7 8 7V5Z"/></svg></button>
