@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function SongSuggestions() {
+export default function SongSuggestions({ spotifyUrl = '' }) {
   const [expanded, setExpanded] = useState(false)
   const [song, setSong] = useState('')
   const [artist, setArtist] = useState('')
@@ -13,8 +13,9 @@ export default function SongSuggestions() {
     <h2 id="playlist-heading">Nuestra playlist</h2>
     <span className="playlist-rule" aria-hidden="true" />
     <p className="playlist-copy">¿Qué canción te hará salir a bailar?<br/>Ayúdanos a llenar la pista toda la noche.</p>
-    <button className="playlist-add" type="button" aria-expanded={expanded} aria-controls="playlist-form" onClick={() => setExpanded(!expanded)}>{expanded ? 'Cerrar formulario' : 'Añadir canción'}<span aria-hidden="true">{expanded ? '−' : '+'}</span></button>
-    <form id="playlist-form" className="playlist-form" hidden={!expanded} action="https://wa.me/56984357593" method="get" target="_blank" rel="noopener noreferrer">
+    {spotifyUrl ? <a className="playlist-add" href={spotifyUrl} target="_blank" rel="noopener noreferrer">Añadir en Spotify <span aria-hidden="true">↗</span></a> : <button className="playlist-add" type="button" aria-expanded={expanded} aria-controls="playlist-form" onClick={() => setExpanded(!expanded)}>{expanded ? 'Cerrar formulario' : 'Añadir canción'}<span aria-hidden="true">{expanded ? '−' : '+'}</span></button>}
+    {spotifyUrl && <p className="playlist-help">Abre nuestra playlist colaborativa y añade tus canciones favoritas en Spotify.</p>}
+    <form id="playlist-form" className="playlist-form" hidden={Boolean(spotifyUrl) || !expanded} action="https://wa.me/56984357593" method="get" target="_blank" rel="noopener noreferrer">
       <input type="hidden" name="text" value={message} />
       <label htmlFor="suggested-song">Canción<input id="suggested-song" value={song} onChange={event => setSong(event.target.value)} placeholder="Nombre de la canción" maxLength={150} required pattern=".*\S.*" /></label>
       <label htmlFor="suggested-artist">Artista<input id="suggested-artist" value={artist} onChange={event => setArtist(event.target.value)} placeholder="¿Quién la canta?" maxLength={150} required pattern=".*\S.*" /></label>

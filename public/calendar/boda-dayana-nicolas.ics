@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dayana y Nicolas//Invitacion de boda//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:boda-dayana-nicolas-20270220@dayanico0611-design.github.io
+DTSTAMP:20261016T120000Z
+DTSTART:20270220T204500Z
+DTEND:20270221T070000Z
+SUMMARY:Matrimonio Dayana y Nicolás
+LOCATION:Parroquia Nuestra Señora de las Mercedes\, Maroto 950\, Concón
+DESCRIPTION:Ceremonia: 20 de febrero de 2027 a las 17:45 hrs.\n
+ Parroquia Nuestra Señora de las Mercedes\, Maroto 950\, Concón.\n
+ Google Maps: https://maps.app.goo.gl/JyE2mYV2eyToXfx5A?g_st=iw\n\n
+ Celebración: desde las 19:30 hrs en Centro de Eventos Chapanay.\n
+ Las Palmeras s/n\, Mantagua\, Quintero.\n
+ Google Maps: https://maps.app.goo.gl/vaXpbVKgHn9XB4x99?g_st=iw\n\n
+ La fiesta termina a las 04:00 hrs del 21 de febrero.\n
+ Horarios de Chile (America/Santiago).
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:¡Falta una semana para la boda de Dayana y Nicolás!
+END:VALARM
+END:VEVENT
+END:VCALENDAR

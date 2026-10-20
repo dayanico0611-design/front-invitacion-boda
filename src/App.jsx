@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import data from './invitationData.json'
 import SongSuggestions from './SongSuggestions'
+import CalendarButton from './CalendarButton'
 
 function App() {
   const { couple, date, hero, gallery, program, locations, gifts, rsvp, footer } = data
@@ -9,7 +10,7 @@ function App() {
   const dateWeekday = new Intl.DateTimeFormat('es-CL', { weekday: 'long' }).format(weddingDate)
   const dateMonth = new Intl.DateTimeFormat('es-CL', { month: 'long' }).format(weddingDate)
   const [remaining, setRemaining] = useState(getRemainingTime(date.iso))
-  const [form, setForm] = useState({ nombre: '', attendance: '', guests: '', companionName: '', dietary: '' })
+  const [form, setForm] = useState({ nombre: '', attendance: '', guests: '', companionName: '', companionAttendance: '', dietary: '' })
   const [found, setFound] = useState(null)
   const [attendanceError, setAttendanceError] = useState(false)
   const [guestLoading, setGuestLoading] = useState(() => Boolean(import.meta.env.VITE_RSVP_ENDPOINT && typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('token')))
@@ -29,10 +30,17 @@ function App() {
     setEnvelopeOpening(true)
     window.scrollTo(0, 0)
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    envelopeTimer.current = window.setTimeout(() => setEnvelopeVisible(false), reducedMotion ? 50 : 1600)
+    envelopeTimer.current = window.setTimeout(() => setEnvelopeVisible(false), reducedMotion ? 50 : 3000)
   }
 
   useEffect(() => () => window.clearTimeout(envelopeTimer.current), [])
+
+  useEffect(() => {
+    if (!envelopeVisible) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = previousOverflow }
+  }, [envelopeVisible])
 
   useEffect(() => {
     const timer = setInterval(() => setRemaining(getRemainingTime(date.iso)), 1000)
@@ -50,7 +58,7 @@ function App() {
         const result = await response.json()
         if (!response.ok || !result.found) throw new Error(result.message || 'No pudimos validar esta invitación.')
         if (cancelled) return
-        setFound(result)
+        setFound({ ...result, adicional: Number(result.adicional ?? result.ADICIONAL ?? 0) })
         setForm((current) => ({ ...current, nombre: toTitleCase(result.nombre || ''), guests: 1 }))
         setStatus({ type: 'success', message: 'Invitación verificada. Confírmanos si nos acompañas.' })
       })
@@ -131,21 +139,32 @@ function App() {
     const { name, value } = event.target
     if (name === 'attendance') {
       setAttendanceError(false)
-      setForm((current) => ({ ...current, attendance: value, companionName: '' }))
+      setForm((current) => ({ ...current, attendance: value, companionName: '', companionAttendance: '', dietary: '' }))
+    } else if (name === 'companionAttendance') {
+      setForm((current) => ({ ...current, companionAttendance: value, companionName: '', dietary: '' }))
     } else {
       setForm((current) => ({ ...current, [name]: value }))
     }
   }
 
+  const isAttending = form.attendance === rsvp.attendanceOptions[0]
+  const companionAllowed = Number(found?.adicional) === 1
+  const followUpReady = isAttending && (!companionAllowed || form.companionAttendance === 'no' || (form.companionAttendance === 'yes' && Boolean(form.companionName.trim())))
+
   const submit = async (event) => {
     event.preventDefault()
     if (!found) return setStatus({ type: 'error', message: 'No pudimos validar tu invitación. Revisa que hayas abierto el enlace que recibiste por WhatsApp.' })
     if (!form.nombre.trim() || !form.attendance) return setStatus({ type: 'error', message: 'Completa tu nombre y asistencia.' })
+    if (Number(found.adicional) === 1 && form.attendance === rsvp.attendanceOptions[0]) {
+      if (!form.companionAttendance) return setStatus({ type: 'error', message: 'Indica si vendrás con acompañante.' })
+      if (form.companionAttendance === 'yes' && !form.companionName.trim()) return setStatus({ type: 'error', message: 'Escribe el nombre de tu acompañante para confirmar.' })
+    }
     setStatus({ type: 'loading', message: 'Guardando tu confirmación...' })
     const token = new URLSearchParams(window.location.search).get('token')
-    const hasCompanion = Number(found.adicional) === 1 && form.attendance === rsvp.attendanceOptions[0] && Boolean(form.companionName.trim())
-    const note = [form.dietary.trim() && `Restricciones alimentarias: ${form.dietary.trim()}`, form.companionName.trim() && `Acompañante: ${form.companionName.trim()}`].filter(Boolean).join(' | ')
-    const payload = { token, name: found?.nombre || form.nombre.trim(), nombre: found?.nombre || form.nombre.trim(), asistencia: form.attendance, attendance: form.attendance, guests: hasCompanion ? 2 : 1, invitados: hasCompanion ? 2 : 1, companionName: hasCompanion ? form.companionName.trim() : '', nombreAcompanante: hasCompanion ? form.companionName.trim() : '', note, nota: note, dietaryRestrictions: form.dietary.trim(), restriccionesAlimentarias: form.dietary.trim(), event: 'boda-dayana-nicolas' }
+    const hasCompanion = Number(found.adicional) === 1 && form.attendance === rsvp.attendanceOptions[0] && form.companionAttendance === 'yes' && Boolean(form.companionName.trim())
+    const dietary = isAttending ? form.dietary.trim() : ''
+    const note = [dietary && `Restricciones alimentarias: ${dietary}`, hasCompanion && `Acompañante: ${form.companionName.trim()}`].filter(Boolean).join(' | ')
+    const payload = { token, name: found?.nombre || form.nombre.trim(), nombre: found?.nombre || form.nombre.trim(), asistencia: form.attendance, attendance: form.attendance, guests: hasCompanion ? 2 : 1, invitados: hasCompanion ? 2 : 1, companionName: hasCompanion ? form.companionName.trim() : '', nombreAcompanante: hasCompanion ? form.companionName.trim() : '', note, nota: note, conAcompanante: hasCompanion, dietaryRestrictions: dietary, restriccionesAlimentarias: dietary, event: 'boda-dayana-nicolas' }
     try {
       if (endpoint) {
         const response = await fetch(endpoint, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
@@ -166,9 +185,10 @@ function App() {
   return <main className="site is-open">
       {envelopeVisible && <div className={`opening-cover${envelopeOpening ? ' is-opening' : ''}`}>
         <button className="opening-cover-action" type="button" onClick={openInvitation} disabled={envelopeOpening} aria-label={`Abrir invitación de ${couple.bride} y ${couple.groom}`}>
-          <span className="opening-envelope envelope-original" aria-hidden="true">
-            <img className="envelope-original-pocket" src="./illustrations/envelope-original.png" alt="" fetchPriority="high" decoding="sync" />
-            <span className="envelope-original-flap"><img src="./illustrations/envelope-original.png" alt="" fetchPriority="high" decoding="sync" /></span>
+          <span className="opening-envelope envelope-original envelope-layered" aria-hidden="true">
+            {['bottom', 'left', 'right', 'flap', 'seal'].map(layer => <span className={`envelope-piece envelope-piece-${layer}`} key={layer}>
+              <img src="./illustrations/envelope-lisianthus.png" alt="" fetchPriority="high" decoding="async" />
+            </span>)}
           </span>
           <span className="envelope-hint">Toca para abrir <span>♡</span></span>
         </button>
@@ -185,7 +205,7 @@ function App() {
         <div className="editorial-grid">
           <div className="editorial-column editorial-left">
             <section className="editorial-intro" id="inicio">
-              <img className="intro-floral floral-corner floral-top-left" src="./illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
+              <img className="intro-floral floral-corner floral-top-left" src="./illustrations/floral-corner-lisianthus.png" alt="" aria-hidden="true" />
               <p className="eyebrow">Nuestra boda</p>
               <div className="editorial-divider intro-divider"><HandDrawnHeart /></div>
               <h1><span>{couple.bride} <em>&amp;</em></span><span>{couple.groom}</span></h1>
@@ -193,9 +213,10 @@ function App() {
                 <span className="date-month">{dateMonth}</span>
                 <div className="date-details"><span className="date-weekday">{dateWeekday}</span><strong>{date.day}</strong><span className="date-year">{date.year}</span></div>
               </div>
+              <CalendarButton />
               <p className="editorial-story" id="nosotros">Después de muchos años juntos, queremos compartir este gran momento con las personas que más queremos.</p>
               <div className="editorial-divider intro-divider"><HandDrawnHeart /></div>
-              <img className="floral-bouquet intro-bouquet" src="./illustrations/intro-bouquet-watercolor.png" alt="" aria-hidden="true" />
+              <img className="floral-bouquet intro-bouquet" src="./illustrations/bouquet-lisianthus.png" alt="" aria-hidden="true" />
             </section>
             <section className="editorial-song" aria-labelledby="song-heading">
               <h2 id="song-heading">Dale play a nuestra canción</h2>
@@ -212,11 +233,11 @@ function App() {
                 const place = index === 0 ? locations.church : locations.venue
                 return <article className="event-item event-item-with-image" key={item.title}>
                   <span className="event-icon"><TimelineIcon name={index === 0 ? 'ring' : 'toast'}/></span>
-                  <div className="event-copy"><h3>{index === 0 ? 'Ceremonia religiosa' : 'Celebración'}</h3><small>{item.time}</small><p className="event-place">{place.name}</p><p>{index === 0 ? 'Maroto 950, Concón' : place.address}</p><div className="event-actions"><a className="panel-button" href={place.maps} target="_blank" rel="noreferrer">Google Maps <span>→</span></a><a className="panel-button panel-button-secondary" href={place.waze} target="_blank" rel="noreferrer">Waze <span>→</span></a></div></div>
-                  <img className="event-watercolor" src={index === 0 ? './illustrations/church-watercolor-v2.png' : './illustrations/chapanay-watercolor.png'} alt={index === 0 ? 'La misma ilustración en acuarela de la parroquia' : 'La misma ilustración en acuarela del Centro de Eventos Chapanay'} />
+                  <div className="event-copy"><h3>{index === 0 ? 'Ceremonia religiosa' : 'Celebración'}</h3><small>{item.time}</small><p className="event-place">{place.name}</p><p>{index === 0 ? 'Maroto 950, Concón' : place.address}</p><LocationOptions place={place} /></div>
+                  {index === 0 ? <img className="event-watercolor" src="./illustrations/church-watercolor-v2.png" alt="Ilustración en acuarela de la parroquia" /> : <div className="event-venue-art"><img className="event-watercolor" src="./illustrations/chapanay-watercolor.png" alt="Ilustración en acuarela del Centro de Eventos Chapanay" /></div>}
                 </article>
               })}</div>
-              <img className="day-bouquet" src="./illustrations/intro-bouquet-watercolor.png" alt="" aria-hidden="true" />
+              <img className="day-bouquet" src="./illustrations/bouquet-lisianthus.png" alt="" aria-hidden="true" />
             </section>
 
             <section className="editorial-dress" id="dress">
@@ -225,7 +246,7 @@ function App() {
               <img className="dress-couple" src="./illustrations/dress-code-couple-pink.png" alt="Ilustración de una pareja con traje negro y vestido rosa formal" />
               <p className="dress-note">Tu mejor versión,<br/>siempre es suficiente</p>
               <div className="editorial-divider dress-divider"><HandDrawnHeart /></div>
-              <p className="dress-color-note">Para que la novia brille, les pedimos evitar el blanco, el plateado y el beige. ¡Gracias por ayudarnos a cuidar ese detalle! 🤍</p>
+              <p className="dress-color-note">Para que la novia brille, les pedimos evitar el color blanco o similares. ¡Gracias por ayudarnos a cuidar ese detalle! 🤍</p>
             </section>
 
           </div>
@@ -240,20 +261,32 @@ function App() {
               <a className="outline-button" href="https://club.noviosparis.cl/home/couple-catalog/21046698" target="_blank" rel="noreferrer">Ver lista <span>→</span></a>
               <div className="rings-divider" aria-hidden="true">♡</div>
             </section>
-            <SongSuggestions />
+            <SongSuggestions spotifyUrl={data.playlist?.collaborationUrl} />
             <section className="editorial-rsvp" id="confirmacion">
-              <img className="rsvp-watercolor" src="./illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
+              <img className="rsvp-watercolor" src="./illustrations/floral-corner-lisianthus.png" alt="" aria-hidden="true" />
               <h2>Confirmación</h2>
               <div className="editorial-divider"><HandDrawnHeart /></div>
               <p className="rsvp-copy">Por favor confirma tu asistencia<br/>antes del 10 de enero de 2027.</p>
               {sent ? <div className="success-card"><span>♥</span><h3>Gracias, {guestName}.</h3><p>{rsvp.successText}</p></div> : <form onSubmit={submit}>
                 <label>Nombre<input name="nombre" value={toTitleCase(form.nombre)} placeholder={guestLoading ? 'Validando tu invitación…' : 'Nombre asociado a tu invitación'} readOnly required/></label>
-                <label>¿Nos acompañas?<select name="attendance" value={form.attendance} onChange={change} onInvalid={(event) => { event.preventDefault(); setAttendanceError(true) }} aria-invalid={attendanceError} aria-describedby={attendanceError ? 'attendance-error' : undefined} required><option value="" disabled>Selecciona una opción</option>{rsvp.attendanceOptions.map((option) => <option key={option}>{option}</option>)}</select>{attendanceError && <span id="attendance-error" className="rsvp-field-error" role="alert">Selecciona si nos acompañas para poder confirmar.</span>}</label>
-                {found && Number(found.adicional) === 1 && form.attendance === rsvp.attendanceOptions[0] && <label>Acompañante (nombre)<input name="companionName" value={form.companionName} onChange={change} placeholder="Si aplica" /></label>}
-                <label>Comentarios adicionales<textarea name="dietary" value={form.dietary} onChange={change} placeholder="Cuéntanos cualquier duda u observación que tengas para nuestro gran día ..."/></label>
+                <fieldset className="rsvp-options" aria-describedby={attendanceError ? 'attendance-error' : undefined}>
+                  <legend>¿Nos acompañas?</legend>
+                  {rsvp.attendanceOptions.map((option, index) => <label className="rsvp-radio" key={option}><input type="radio" name="attendance" value={option} checked={form.attendance === option} onChange={change} onInvalid={(event) => { event.preventDefault(); setAttendanceError(true) }} required/><span>{index === 0 ? 'Sí, no me lo pierdo' : 'No podré asistir'}</span></label>)}
+                  {attendanceError && <span id="attendance-error" className="rsvp-field-error" role="alert">Selecciona si nos acompañas para poder confirmar.</span>}
+                </fieldset>
+                {found && Number(found.adicional) === 1 && form.attendance === rsvp.attendanceOptions[0] && <>
+                  <fieldset className="rsvp-options">
+                    <legend>¿Vendrás con acompañante?</legend>
+                    <label className="rsvp-radio"><input type="radio" name="companionAttendance" value="yes" checked={form.companionAttendance === 'yes'} onChange={change} required/><span>Sí, iré con acompañante</span></label>
+                    <label className="rsvp-radio"><input type="radio" name="companionAttendance" value="no" checked={form.companionAttendance === 'no'} onChange={change} required/><span>No, iré sin acompañante</span></label>
+                  </fieldset>
+                  {form.companionAttendance === 'yes' && <label>Nombre de tu acompañante (obligatorio)<input name="companionName" value={form.companionName} onChange={change} placeholder="Nombre y apellido" required pattern=".*\S.*"/></label>}
+                </>}
+                {followUpReady && <label>Restricciones alimentarias<textarea name="dietary" value={form.dietary} onChange={change} placeholder="Cuéntanos sobre cualquier alergia, restricción o elección alimentaria que debamos considerar, tanto en alimentos como en bebidas…"/></label>}
                 {status.type !== 'idle' && <p className={`form-status ${status.type}`}>{status.message}</p>}
-                <button type="submit" className="submit-button">Confirmar asistencia <span>→</span></button>
+                {form.attendance && <button type="submit" className="submit-button">Confirmar asistencia <span>→</span></button>}
               </form>}
+              <img className="rsvp-watercolor rsvp-watercolor-bottom" src="./illustrations/floral-corner-lisianthus.png" alt="" aria-hidden="true" />
             </section>
             </div>
 
@@ -266,10 +299,20 @@ function App() {
             <figure className="editorial-photo">
               <img className="couple-photo" src="./fotos/IMG_2387.JPEG" alt="Dayana y Nicolás abrazados frente al mar" loading="lazy" />
               <figcaption>Nos encantaría<br/><em>celebrar contigo</em><span>♡</span></figcaption>
-              <img className="floral-photo-corner" src="./illustrations/intro-floral-watercolor-hd.png" alt="" aria-hidden="true" />
+              <img className="floral-photo-corner" src="./illustrations/floral-corner-lisianthus.png" alt="" aria-hidden="true" />
             </figure>
+            <section className="guest-faq" id="preguntas" aria-labelledby="guest-faq-heading">
+              <p className="eyebrow">Antes del gran día</p>
+              <h2 id="guest-faq-heading">Preguntas frecuentes</h2>
+              <div className="guest-faq-list">
+                <details name="guest-questions"><summary>¿Puedo llevar acompañante?</summary><p>Si tu invitación incluye un acompañante, al confirmar que asistirás podrás indicar si vendrás con alguien y escribir su nombre. Si tienes dudas, escríbenos por WhatsApp.</p></details>
+                <details name="guest-questions"><summary>¿Pueden asistir niños?</summary><p>Con mucho cariño, hemos decidido que nuestra celebración sea solo para adultos. Gracias por su comprensión y por acompañarnos a disfrutar de esta noche tan especial.</p></details>
+                <details name="guest-questions"><summary>¿Cómo aviso sobre una alergia o restricción alimentaria?</summary><p>Cuéntanos en el campo «Restricciones alimentarias» al confirmar tu asistencia, para que podamos tenerlo en cuenta.</p></details>
+                <details name="guest-questions"><summary>¿El lugar cuenta con estacionamiento?</summary><p>¡Sí, contamos con estacionamientos! Aun así, les recomendamos 100% venir sin vehículo para que puedan disfrutar de la celebración sin restricciones. Pueden organizar su traslado en taxi, transporte por aplicación o con alguien que conduzca de regreso.</p></details>
+                <details name="guest-questions"><summary>¿Habrá servicio de guardarropía?</summary><p>¡Sí! En el Centro de Eventos Chapanay habrá servicio de guardarropía para que puedas dejar tu abrigo y disfrutar cómodamente de la celebración.</p></details>
+              </div>
+            </section>
             <section className="editorial-faq" id="contacto">
-              <div className="contact-divider"><HandDrawnHeart /></div>
               <MailIcon />
               <p className="eyebrow">Contacto / detalles</p>
               <p className="faq-invitation">¿Dudas o consultas?</p>
@@ -277,13 +320,25 @@ function App() {
                 <a className="outline-button" href="https://wa.me/56984357593" target="_blank" rel="noreferrer"><WhatsAppIcon /> Dayana <span>→</span></a>
                 <a className="outline-button" href="https://wa.me/56994411003" target="_blank" rel="noreferrer"><WhatsAppIcon /> Nicolás <span>→</span></a>
               </div>
-              <img className="contact-watercolor" src="./illustrations/intro-bouquet-watercolor.png" alt="" aria-hidden="true" />
+              <img className="contact-watercolor" src="./illustrations/bouquet-lisianthus.png" alt="" aria-hidden="true" />
             </section>
             <footer className="editorial-footer"><span className="footer-mark">{couple.shortMark}</span><p>{footer}</p><small>{date.display}</small></footer>
           </div>
         </div>
       </div>
   </main>
+}
+
+function LocationOptions({ place }) {
+  return <div className="event-actions">
+    <details className="event-location" name="event-locations">
+      <summary className="panel-button">Ver ubicación <span aria-hidden="true">→</span></summary>
+      <div className="location-options" aria-label={`Ubicación de ${place.name}`}>
+        <a href={place.maps} target="_blank" rel="noopener noreferrer">Google Maps <span aria-hidden="true">↗</span></a>
+        <a href={place.waze} target="_blank" rel="noopener noreferrer">Waze <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+  </div>
 }
 
 function WeddingSongPlayer() {
