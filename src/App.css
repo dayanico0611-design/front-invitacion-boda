@@ -1114,3 +1114,7 @@ body { background: #eee9e0; }
 }
 
 .editorial-rsvp .rsvp-options .rsvp-field-error { grid-column: 1 / -1; }
+
+.editorial-rsvp .success-card { box-sizing: border-box; width: min(600px,100%); margin-inline: auto; text-align: center; }
+.editorial-rsvp .success-card h3 { overflow-wrap: anywhere; }
+.editorial-rsvp .success-card p { max-width: 48ch; margin-inline: auto; line-height: 1.5; text-wrap: balance; }

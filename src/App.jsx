@@ -276,7 +276,7 @@ function App() {
               <h2>Confirmación</h2>
               <div className="editorial-divider"><HandDrawnHeart /></div>
               <p className="rsvp-copy">Por favor confirma tu asistencia<br/>antes del 10 de enero de 2027.</p>
-              {sent ? <div className="success-card"><span>♥</span><h3>Gracias, {guestName}.</h3><p>{rsvp.successText}</p></div> : <form onSubmit={submit}>
+              {sent ? <div className="success-card"><span>♥</span><h3>Gracias, {guestName}.</h3><p>{isAttending ? rsvp.successText : 'Recibimos tu respuesta, lamentamos que no puedas acompañarnos :('}</p></div> : <form onSubmit={submit}>
                 <label>Nombre<input name="nombre" value={toTitleCase(form.nombre)} placeholder={guestLoading ? 'Validando tu invitación…' : 'Nombre asociado a tu invitación'} readOnly required/></label>
                 <fieldset className="rsvp-options" aria-describedby={attendanceError ? 'attendance-error' : undefined}>
                   <legend>¿Nos acompañas?</legend>
