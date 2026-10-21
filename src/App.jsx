@@ -167,14 +167,23 @@ function App() {
     const payload = { token, name: found?.nombre || form.nombre.trim(), nombre: found?.nombre || form.nombre.trim(), asistencia: form.attendance, attendance: form.attendance, guests: hasCompanion ? 2 : 1, invitados: hasCompanion ? 2 : 1, companionName: hasCompanion ? form.companionName.trim() : '', nombreAcompanante: hasCompanion ? form.companionName.trim() : '', note, nota: note, conAcompanante: hasCompanion, dietaryRestrictions: dietary, restriccionesAlimentarias: dietary, event: 'boda-dayana-nicolas' }
     try {
       if (endpoint) {
-        const response = await fetch(endpoint, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-        if (!response.ok) throw new Error('No pudimos guardar la confirmación.')
+        const response = await fetch(endpoint, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        if (!response.ok) throw new Error('No pudimos guardar la confirmación. Inténtalo nuevamente en unos momentos.')
+        let result
+        try {
+          result = await response.json()
+        } catch {
+          throw new Error('El servicio de confirmación devolvió una respuesta inesperada. Inténtalo nuevamente o escríbenos por WhatsApp.')
+        }
+        if (!result || result.success === false || result.ok === false || result.found === false || result.error) {
+          throw new Error(result?.message || (typeof result?.error === 'string' ? result.error : '') || 'No pudimos guardar la confirmación. Revisa tu enlace de invitación o escríbenos por WhatsApp.')
+        }
       }
       saveStoredGuests([{ id: Date.now(), name: payload.name, attendance: payload.attendance, guests: payload.guests, note: payload.note, createdAt: new Date().toISOString() }, ...getStoredGuests()].slice(0, 200))
       setGuestName(payload.name)
       setSent(true)
       setStatus({ type: 'success', message: 'Tu confirmación quedó registrada.' })
-    } catch (error) { setStatus({ type: 'error', message: error.message }) }
+    } catch (error) { setStatus({ type: 'error', message: error instanceof TypeError ? 'No pudimos conectar con el servicio de confirmación. Revisa tu conexión e inténtalo nuevamente. Si el problema continúa, escríbenos por WhatsApp.' : error.message }) }
   }
 
   if (endpoint) {
