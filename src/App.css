@@ -1072,7 +1072,7 @@ body { background: #eee9e0; }
   .floating-nav .nav-mark,.floating-nav .nav-signature { display: none; }
   .floating-nav nav {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     width: 100%;
     min-width: 0;
     gap: 0;
@@ -1118,3 +1118,7 @@ body { background: #eee9e0; }
 .editorial-rsvp .success-card { box-sizing: border-box; width: min(600px,100%); margin-inline: auto; text-align: center; }
 .editorial-rsvp .success-card h3 { overflow-wrap: anywhere; }
 .editorial-rsvp .success-card p { max-width: 48ch; margin-inline: auto; line-height: 1.5; text-wrap: balance; }
+.editorial-intro .editorial-story { max-width: 54ch; margin-inline: auto; text-align: center; text-wrap: balance; }
+@media (max-width: 900px) {
+  .floating-nav nav a { white-space: normal; text-align: center; line-height: 1.3; }
+}

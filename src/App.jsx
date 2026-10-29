@@ -205,7 +205,7 @@ function App() {
       <header className="floating-nav" inert={envelopeVisible} aria-hidden={envelopeVisible}>
         <a href="#inicio" className="nav-mark">{couple.shortMark}</a>
         <nav aria-label="Secciones de la invitación">
-          <a href="#inicio">Inicio</a><a href="#nosotros">Nosotros</a><a href="#detalles">Detalles</a><a href="#confirmacion">Confirmación</a>
+          <a href="#inicio">Inicio</a><a href="#nosotros">Nosotros</a><a href="#detalles">Detalles</a><a href="#regalos">Lista de novios</a><a href="#confirmacion">Confirmación</a>
         </nav>
         <span className="nav-signature">Dayana &amp; Nicolás <b>♡</b></span>
       </header>
@@ -251,7 +251,7 @@ function App() {
 
             <section className="editorial-dress" id="dress">
               <p className="eyebrow">Código de vestimenta</p>
-              <h2>Formal / Cóctel</h2>
+              <h2>Formal</h2>
               <img className="dress-couple" src="./illustrations/dress-code-couple-pink.png" alt="Ilustración de una pareja con traje negro y vestido rosa formal" />
               <p className="dress-note">Tu mejor versión,<br/>siempre es suficiente</p>
               <div className="editorial-divider dress-divider"><HandDrawnHeart /></div>
@@ -275,7 +275,7 @@ function App() {
               <img className="rsvp-watercolor" src="./illustrations/floral-corner-lisianthus.png" alt="" aria-hidden="true" />
               <h2>Confirmación</h2>
               <div className="editorial-divider"><HandDrawnHeart /></div>
-              <p className="rsvp-copy">Por favor confirma tu asistencia<br/>antes del 10 de enero de 2027.</p>
+              <p className="rsvp-copy">Por favor confirma tu asistencia<br/>antes del <strong>10 de enero de 2027</strong>.</p>
               {sent ? <div className="success-card"><span>♥</span><h3>Gracias, {guestName}.</h3><p>{isAttending ? rsvp.successText : 'Recibimos tu respuesta, lamentamos que no puedas acompañarnos :('}</p></div> : <form onSubmit={submit}>
                 <label>Nombre<input name="nombre" value={toTitleCase(form.nombre)} placeholder={guestLoading ? 'Validando tu invitación…' : 'Nombre asociado a tu invitación'} readOnly required/></label>
                 <fieldset className="rsvp-options" aria-describedby={attendanceError ? 'attendance-error' : undefined}>
@@ -314,11 +314,11 @@ function App() {
               <p className="eyebrow">Antes del gran día</p>
               <h2 id="guest-faq-heading">Preguntas frecuentes</h2>
               <div className="guest-faq-list">
-                <details name="guest-questions"><summary>¿Puedo llevar acompañante?</summary><p>Si tu invitación incluye un acompañante, al confirmar que asistirás podrás indicar si vendrás con alguien y escribir su nombre. Si tienes dudas, escríbenos por WhatsApp.</p></details>
+                <details name="guest-questions"><summary>¿Puedo llevar acompañante?</summary><p>Estamos preparando este día con mucha ilusión y nos encantaría compartirlo con todos nuestros seres queridos. Sin embargo, contamos con cupos limitados, por lo que les pedimos considerar únicamente a las personas incluidas en su invitación.</p><p>¡Gracias por acompañarnos y comprenderlo! ♡</p></details>
                 <details name="guest-questions"><summary>¿Pueden asistir niños?</summary><p>Con mucho cariño, hemos decidido que nuestra celebración sea solo para adultos. Gracias por su comprensión y por acompañarnos a disfrutar de esta noche tan especial.</p></details>
                 <details name="guest-questions"><summary>¿Cómo aviso sobre una alergia o restricción alimentaria?</summary><p>Cuéntanos en el campo «Restricciones alimentarias» al confirmar tu asistencia, para que podamos tenerlo en cuenta.</p></details>
                 <details name="guest-questions"><summary>¿El lugar cuenta con estacionamiento?</summary><p>¡Sí, contamos con estacionamientos! Aun así, les recomendamos 100% venir sin vehículo para que puedan disfrutar de la celebración sin restricciones. Pueden organizar su traslado en taxi, transporte por aplicación o con alguien que conduzca de regreso.</p></details>
-                <details name="guest-questions"><summary>¿Habrá servicio de guardarropía?</summary><p>¡Sí! En el Centro de Eventos Chapanay habrá servicio de guardarropía para que puedas dejar tu abrigo y disfrutar cómodamente de la celebración.</p></details>
+                <details name="guest-questions"><summary>¿Habrá servicio de guardarropía?</summary><p>¡Sí! Podrán dejar sus pertenencias en guardarropía y disfrutar de la celebración con tranquilidad. ✨ Además, les recomendamos traer un par de zapatillas cómodas para cambiarse y seguir bailando hasta el final de la noche. 💃🏻🪩</p></details>
               </div>
             </section>
             <section className="editorial-faq" id="contacto">
