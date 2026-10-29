@@ -6,9 +6,8 @@ const end = new Date(`${data.date.year}-${data.date.month}-${String(Number(data.
 const compactUtc = date => date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z')
 const title = data.calendar.title
 const location = `${data.calendar.place}, ${data.calendar.address}`
-const description = `¡Nos casamos!\n\nCeremonia: 20 de febrero de 2027 a las 17:45 hrs.\n${location}\nGoogle Maps: ${data.locations.church.maps}\n\nCelebración: desde las 19:30 hrs en ${data.locations.venue.name}.\n${data.locations.venue.address}\nGoogle Maps: ${data.locations.venue.maps}\n\nLa fiesta termina a las 04:00 hrs del 21 de febrero.\nHorarios de Chile (America/Santiago).`
+const description = `¡Nos casamos!\n\nCeremonia: 20 de febrero de 2027 a las 17:45 hrs.\n${location}\nGoogle Maps: ${data.locations.church.maps}\nWaze: ${data.locations.church.waze}\n\nCelebración: desde las 19:30 hrs en ${data.locations.venue.name}.\n${data.locations.venue.address}\nGoogle Maps: ${data.locations.venue.maps}\nWaze: ${data.locations.venue.waze}\n\nLa fiesta termina a las 04:00 hrs del 21 de febrero.\nHorarios de Chile (America/Santiago).`
 const google = `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: 'TEMPLATE', text: title, dates: `${compactUtc(start)}/${compactUtc(end)}`, details: description, location, ctz: 'America/Santiago' })}`
-const outlook = `https://outlook.live.com/calendar/0/deeplink/compose?${new URLSearchParams({ path: '/calendar/action/compose', rru: 'addevent', subject: title, startdt: start.toISOString(), enddt: end.toISOString(), body: description, location })}`
 
 export default function CalendarButton() {
   const menu = useRef(null)
@@ -23,7 +22,7 @@ export default function CalendarButton() {
     <div className="calendar-options">
       <a href={`${import.meta.env.BASE_URL}calendar/boda-dayana-nicolas.ics`} onClick={close}>iPhone / Apple Calendar <span aria-hidden="true">↓</span></a>
       <a href={google} target="_blank" rel="noopener noreferrer" onClick={close}>Google Calendar <span aria-hidden="true">↗</span></a>
-      <a href={outlook} target="_blank" rel="noopener noreferrer" onClick={close}>Outlook <span aria-hidden="true">↗</span></a>
+      <a href={`${import.meta.env.BASE_URL}calendar/boda-dayana-nicolas.ics`} download="boda-dayana-nicolas.ics" onClick={close}>Outlook (archivo de evento) <span aria-hidden="true">↓</span></a>
     </div>
   </details>
 }

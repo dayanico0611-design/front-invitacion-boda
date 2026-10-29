@@ -217,7 +217,7 @@ function App() {
               <img className="intro-floral floral-corner floral-top-left" src="./illustrations/floral-corner-lisianthus.png" alt="" aria-hidden="true" />
               <p className="eyebrow">Nuestra boda</p>
               <div className="editorial-divider intro-divider"><HandDrawnHeart /></div>
-              <h1><span>{couple.bride} <em>&amp;</em></span><span>{couple.groom}</span></h1>
+              <h1 aria-label="Dayana y Nicolás"><span>{couple.bride}</span><span className="couple-ampersand" aria-hidden="true">&amp;</span><span>{couple.groom}</span></h1>
               <div className="editorial-date" id="fecha" aria-label={`${dateWeekday} ${date.day} de ${dateMonth} de ${date.year}`}>
                 <span className="date-month">{dateMonth}</span>
                 <div className="date-details"><span className="date-weekday">{dateWeekday}</span><strong>{date.day}</strong><span className="date-year">{date.year}</span></div>

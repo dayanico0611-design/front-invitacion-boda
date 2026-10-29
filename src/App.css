@@ -1122,3 +1122,5 @@ body { background: #eee9e0; }
 @media (max-width: 900px) {
   .floating-nav nav a { white-space: normal; text-align: center; line-height: 1.3; }
 }
+.editorial-intro h1 .couple-ampersand { margin: .18em 0 .12em; font-size: .5em; line-height: 1; }
+.editorial-rsvp .rsvp-copy strong { font-weight: 700; color: var(--ink); }
