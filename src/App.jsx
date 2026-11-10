@@ -205,7 +205,7 @@ function App() {
       <header className="floating-nav" inert={envelopeVisible} aria-hidden={envelopeVisible}>
         <a href="#inicio" className="nav-mark">{couple.shortMark}</a>
         <nav aria-label="Secciones de la invitación">
-          <a href="#inicio">Inicio</a><a href="#nosotros">Nosotros</a><a href="#detalles">Detalles</a><a href="#regalos">Lista de novios</a><a href="#confirmacion">Confirmación</a>
+          <a href="#inicio">Inicio</a><a href="#dia">Lugar</a><a href="#regalos">Lista de novios</a><a href="#confirmacion">Confirmación</a><a href="#preguntas">FAQ</a>
         </nav>
         <span className="nav-signature">Dayana &amp; Nicolás <b>♡</b></span>
       </header>
@@ -306,7 +306,7 @@ function App() {
             </section>
 
             <figure className="editorial-photo">
-              <img className="couple-photo" src="./fotos/IMG_2387.JPEG" alt="Dayana y Nicolás abrazados frente al mar" loading="lazy" />
+              <img className="couple-photo" src="./fotos/IMG_2329.JPG" alt="Dayana y Nicolás celebrando su matrimonio civil" loading="lazy" />
               <figcaption>Nos encantaría<br/><em>celebrar contigo</em><span>♡</span></figcaption>
               <img className="floral-photo-corner" src="./illustrations/floral-corner-lisianthus.png" alt="" aria-hidden="true" />
             </figure>

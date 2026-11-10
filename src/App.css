@@ -1124,3 +1124,10 @@ body { background: #eee9e0; }
 }
 .editorial-intro h1 .couple-ampersand { margin: .18em 0 .12em; font-size: .5em; line-height: 1; }
 .editorial-rsvp .rsvp-copy strong { font-weight: 700; color: var(--ink); }
+/* Foto del matrimonio civil y legibilidad de los lugares y horarios. */
+.editorial-photo > .couple-photo { width: min(600px,100%); height: auto; margin-inline: auto; object-fit: contain; filter: none; }
+.event-item .event-copy .event-place { font-size: 14px; }
+.event-item .event-copy small { font-size: 18px; line-height: 1.4; }
+@media (min-width: 901px) {
+  .event-item .event-copy .event-place { font-size: 18px; }
+}
