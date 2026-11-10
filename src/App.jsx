@@ -163,8 +163,8 @@ function App() {
     const token = new URLSearchParams(window.location.search).get('token')
     const hasCompanion = Number(found.adicional) === 1 && form.attendance === rsvp.attendanceOptions[0] && form.companionAttendance === 'yes' && Boolean(form.companionName.trim())
     const dietary = isAttending ? form.dietary.trim() : ''
-    const note = [dietary && `Restricciones alimentarias: ${dietary}`, hasCompanion && `Acompañante: ${form.companionName.trim()}`].filter(Boolean).join(' | ')
-    const payload = { token, name: found?.nombre || form.nombre.trim(), nombre: found?.nombre || form.nombre.trim(), asistencia: form.attendance, attendance: form.attendance, guests: hasCompanion ? 2 : 1, invitados: hasCompanion ? 2 : 1, companionName: hasCompanion ? form.companionName.trim() : '', nombreAcompanante: hasCompanion ? form.companionName.trim() : '', note, nota: note, conAcompanante: hasCompanion, dietaryRestrictions: dietary, restriccionesAlimentarias: dietary, event: 'boda-dayana-nicolas' }
+    const note = ''
+    const payload = { token, name: found?.nombre || form.nombre.trim(), nombre: found?.nombre || form.nombre.trim(), asistencia: isAttending ? 'si' : 'no', attendance: isAttending ? 'si' : 'no', guests: isAttending ? (hasCompanion ? 2 : 1) : 0, invitados: isAttending ? (hasCompanion ? 2 : 1) : 0, companionName: hasCompanion ? form.companionName.trim() : '', nombreAcompanante: hasCompanion ? form.companionName.trim() : '', note, nota: note, conAcompanante: hasCompanion, dietaryRestrictions: dietary, restriccionesAlimentarias: dietary, event: 'boda-dayana-nicolas' }
     try {
       if (endpoint) {
         const response = await fetch(endpoint, { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
@@ -445,3 +445,4 @@ function getStoredGuests() { try { return JSON.parse(localStorage.getItem('boda-
 function saveStoredGuests(guests) { try { localStorage.setItem('boda-dayana-nicolas-guests', JSON.stringify(guests)) } catch {} }
 
 export default App
+
