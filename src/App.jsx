@@ -205,7 +205,7 @@ function App() {
       <header className="floating-nav" inert={envelopeVisible} aria-hidden={envelopeVisible}>
         <a href="#inicio" className="nav-mark">{couple.shortMark}</a>
         <nav aria-label="Secciones de la invitación">
-          <a href="#inicio">Inicio</a><a href="#dia">Lugar</a><a href="#regalos">Lista de novios</a><a href="#confirmacion">Confirmación</a><a href="#preguntas">FAQ</a>
+          <a href="#inicio">Inicio</a><a href="#dia">Lugar</a><a href="#regalos">Regalos</a><a href="#confirmacion">Confirmación</a><a href="#preguntas">FAQ</a>
         </nav>
         <span className="nav-signature">Dayana &amp; Nicolás <b>♡</b></span>
       </header>
@@ -267,6 +267,7 @@ function App() {
               <p className="eyebrow">Lista de novios</p>
               <h2>Un detalle para<br/><em>nuestro nuevo capítulo</em></h2>
               <p>{gifts.description}</p>
+              <p>Pueden elegir un regalo hasta el <strong>19 de febrero de 2027</strong>.</p>
               <a className="outline-button" href="https://club.noviosparis.cl/home/couple-catalog/21046698" target="_blank" rel="noreferrer">Ver lista <span>→</span></a>
               <div className="rings-divider" aria-hidden="true">♡</div>
             </section>
@@ -319,7 +320,7 @@ function App() {
                 <details name="guest-questions"><summary>¿Cómo aviso sobre una alergia o restricción alimentaria?</summary><p>Cuéntanos en el campo «Restricciones alimentarias» al confirmar tu asistencia, para que podamos tenerlo en cuenta.</p></details>
                 <details name="guest-questions"><summary>¿El lugar cuenta con estacionamiento?</summary><p>¡Sí, contamos con estacionamientos! Aun así, les recomendamos 100% venir sin vehículo para que puedan disfrutar de la celebración sin restricciones. Pueden organizar su traslado en taxi, transporte por aplicación o con alguien que conduzca de regreso.</p></details>
                 <details name="guest-questions"><summary>¿Habrá servicio de guardarropía?</summary><p>¡Sí! Podrán dejar sus pertenencias en guardarropía y disfrutar de la celebración con tranquilidad. ✨ Además, les recomendamos traer un par de zapatillas cómodas para cambiarse y seguir bailando hasta el final de la noche. 💃🏻🪩</p></details>
-                <details name="guest-questions"><summary>¿En qué consiste la lista de novios Paris?</summary><p>Es una lista de regalos simbólica. Si eligen regalarnos una experiencia o un producto para el hogar, recibiremos el valor del regalo y lo usaremos para nuestra luna de miel. ¡Muchas gracias por ser parte de esto! ❤️</p></details>
+                <details name="guest-questions"><summary>¿En qué consiste la lista de novios Paris?</summary><p>Es una lista de regalos simbólica. Si eligen regalarnos una experiencia o un producto para el hogar, recibiremos el valor del regalo y lo usaremos para nuestra luna de miel.</p><p>Pueden elegir un regalo hasta el <strong>19 de febrero de 2027</strong>. ¡Muchas gracias por ser parte de esto! ❤️</p></details>
               </div>
             </section>
             <section className="editorial-faq" id="contacto">
