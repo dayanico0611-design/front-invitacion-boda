@@ -275,7 +275,7 @@ function App() {
               <img className="rsvp-watercolor" src="./illustrations/floral-corner-lisianthus.png" alt="" aria-hidden="true" />
               <h2>Confirmación</h2>
               <div className="editorial-divider"><HandDrawnHeart /></div>
-              <p className="rsvp-copy">Por favor confirma tu asistencia<br/>hasta el <strong>31 de diciembre de 2026</strong>.</p>
+              <p className="rsvp-copy">Por favor, confirma tu asistencia<br/> a más tardar el <strong>31 de diciembre de 2026</strong>.</p>
               {sent ? <div className="success-card"><span>♥</span><h3>Gracias, {guestName}.</h3><p>{isAttending ? rsvp.successText : 'Recibimos tu respuesta, lamentamos que no puedas acompañarnos :('}</p></div> : <form onSubmit={submit}>
                 <label>Nombre<input name="nombre" value={toTitleCase(form.nombre)} placeholder={guestLoading ? 'Validando tu invitación…' : 'Nombre asociado a tu invitación'} readOnly required/></label>
                 <fieldset className="rsvp-options" aria-describedby={attendanceError ? 'attendance-error' : undefined}>
