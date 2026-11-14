@@ -348,7 +348,7 @@ body { background: #eee9e0; }
 .editorial-countdown { padding: 23px 25px 27px !important; border-top: 1px solid rgba(140,119,84,.22); }
 .editorial-countdown .small-icon { margin-bottom: 8px; }
 .editorial-countdown .count-grid { width: 100%; grid-template-columns: repeat(4,minmax(0,1fr)); border-block: 0; }
-.editorial-countdown .count-grid > div { padding: 9px 2px; border-right: 1px solid rgba(140,119,84,.22); }
+.editorial-countdown .count-grid > div { padding: 9px 2px; border-right: 1px solid rgba(140,119,84,.22); border-bottom: 0; }
 .editorial-countdown .count-grid strong { color: #685a45; font-size: clamp(26px,3vw,39px); }
 .editorial-countdown .count-grid span { font-size: 7px; letter-spacing: .12em; }
 .editorial-photo { position: relative; margin: 0; padding: 0 15px; }
