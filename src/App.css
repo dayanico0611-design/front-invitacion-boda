@@ -1128,6 +1128,9 @@ body { background: #eee9e0; }
 .editorial-photo > .couple-photo { width: min(600px,100%); height: auto; margin-inline: auto; object-fit: contain; filter: none; }
 .event-item .event-copy .event-place { font-size: 14px; }
 .event-item .event-copy small { font-size: 18px; line-height: 1.4; }
+@media (max-width: 600px) {
+  #dia .event-item-with-image:first-child .event-place { text-align: center; text-wrap: balance; }
+}
 @media (min-width: 901px) {
   .event-item .event-copy .event-place { font-size: 18px; }
 }
