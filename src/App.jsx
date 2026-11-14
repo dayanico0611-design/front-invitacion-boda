@@ -319,6 +319,7 @@ function App() {
                 <details name="guest-questions"><summary>¿Cómo aviso sobre una alergia o restricción alimentaria?</summary><p>Cuéntanos en el campo «Restricciones alimentarias» al confirmar tu asistencia, para que podamos tenerlo en cuenta.</p></details>
                 <details name="guest-questions"><summary>¿El lugar cuenta con estacionamiento?</summary><p>¡Sí, contamos con estacionamientos! Aun así, les recomendamos 100% venir sin vehículo para que puedan disfrutar de la celebración sin restricciones. Pueden organizar su traslado en taxi, transporte por aplicación o con alguien que conduzca de regreso.</p></details>
                 <details name="guest-questions"><summary>¿Habrá servicio de guardarropía?</summary><p>¡Sí! Podrán dejar sus pertenencias en guardarropía y disfrutar de la celebración con tranquilidad. ✨ Además, les recomendamos traer un par de zapatillas cómodas para cambiarse y seguir bailando hasta el final de la noche. 💃🏻🪩</p></details>
+                <details name="guest-questions"><summary>¿En qué consiste la lista de novios Paris?</summary><p>Es una lista de regalos simbólica. Si eligen regalarnos una experiencia o un producto para el hogar, recibiremos el valor del regalo y lo usaremos para nuestra luna de miel. ¡Muchas gracias por ser parte de esto! ❤️</p></details>
               </div>
             </section>
             <section className="editorial-faq" id="contacto">
